@@ -11,6 +11,7 @@ public partial class Form1 : Form
         InitializeComponent();
     }
 
+
     private void adicionarBtn_Click(object sender, EventArgs e)
     {
         Produto produto = null;
@@ -19,29 +20,43 @@ public partial class Form1 : Form
         {
             produto = (Produto)listBox1.SelectedItem;
         }
+
         if (produto == null)
         {
             MessageBox.Show("Selecione o item para adicionar");
             return;
         }
-        if (produto.Quantidade <= 0)
+
+        int quantidadeDesejada;
+        if (!int.TryParse(quantidadeTxt.Text, out quantidadeDesejada) || quantidadeDesejada <= 0)
         {
-            MessageBox.Show("Produto acabou! ");
+            MessageBox.Show("Digite uma quantidade válida.");
             return;
         }
 
-        listBox2.Items.Add(produto);
-        total += produto.Preco;
+        if (produto.Quantidade < quantidadeDesejada)
+        {
+            MessageBox.Show("Quantidade insuficiente no estoque! Estoque disponível: " + produto.Quantidade);
+            return;
+        }
+
+        if (produto.Quantidade < 5  )
+        {
+            MessageBox.Show("Aviso\n Produto acabando!");
+        }
+
+        for (int i = 0; i < quantidadeDesejada; i++)
+        {
+            listBox2.Items.Add(produto);
+        }
+
+        total += produto.Preco * quantidadeDesejada;
         totalTxt.Text = "Seu total é R$ " + total.ToString("F2");
-        produto.Quantidade--;
+        produto.Quantidade -= quantidadeDesejada;
+
         AtualizarListBox(listBox1);
-        
-
-
-        
-
-
     }
+
 
     private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -95,7 +110,14 @@ public partial class Form1 : Form
     private void quantidadeTxt_TextChanged(object sender, EventArgs e)
 
     {
-        
+
+        int quantidade;
+        if (!int.TryParse(quantidadeTxt.Text, out quantidade))
+        {
+            MessageBox.Show("Digite um número válido.");
+            quantidadeTxt.Focus();
+            return;
+        }
 
     }
     private void AtualizarListBox(ListBox listBox)
