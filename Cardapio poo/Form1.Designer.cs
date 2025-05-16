@@ -38,8 +38,12 @@
             pedidoTxt = new Label();
             quantidadeTxt = new TextBox();
             label2 = new Label();
-            verificarBtn = new Button();
             pagamentoBtn = new Button();
+            dateTimePicker1 = new DateTimePicker();
+            dinheiroRecebidoTxt = new TextBox();
+            label1 = new Label();
+            label3 = new Label();
+            TrocoTxt = new TextBox();
             SuspendLayout();
             // 
             // totalTxt
@@ -55,7 +59,7 @@
             // 
             cardapioTxt.AutoSize = true;
             cardapioTxt.Font = new Font("Segoe UI", 12F);
-            cardapioTxt.Location = new Point(193, 46);
+            cardapioTxt.Location = new Point(197, 78);
             cardapioTxt.Name = "cardapioTxt";
             cardapioTxt.Size = new Size(73, 21);
             cardapioTxt.TabIndex = 1;
@@ -63,7 +67,7 @@
             // 
             // adicionarBtn
             // 
-            adicionarBtn.Location = new Point(814, 70);
+            adicionarBtn.Location = new Point(604, 161);
             adicionarBtn.Name = "adicionarBtn";
             adicionarBtn.Size = new Size(156, 85);
             adicionarBtn.TabIndex = 2;
@@ -73,7 +77,7 @@
             // 
             // removerBtn
             // 
-            removerBtn.Location = new Point(814, 182);
+            removerBtn.Location = new Point(604, 277);
             removerBtn.Name = "removerBtn";
             removerBtn.Size = new Size(156, 85);
             removerBtn.TabIndex = 3;
@@ -83,7 +87,7 @@
             // 
             // finalizarBtn
             // 
-            finalizarBtn.Location = new Point(814, 439);
+            finalizarBtn.Location = new Point(604, 514);
             finalizarBtn.Name = "finalizarBtn";
             finalizarBtn.Size = new Size(156, 85);
             finalizarBtn.TabIndex = 4;
@@ -96,9 +100,9 @@
             listBox1.Font = new Font("Segoe UI", 12F);
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 21;
-            listBox1.Location = new Point(12, 70);
+            listBox1.Location = new Point(12, 111);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(467, 466);
+            listBox1.Size = new Size(447, 466);
             listBox1.TabIndex = 5;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
@@ -107,7 +111,7 @@
             listBox2.Font = new Font("Segoe UI", 10F);
             listBox2.FormattingEnabled = true;
             listBox2.ItemHeight = 17;
-            listBox2.Location = new Point(1015, 80);
+            listBox2.Location = new Point(846, 111);
             listBox2.Name = "listBox2";
             listBox2.Size = new Size(421, 429);
             listBox2.TabIndex = 6;
@@ -116,7 +120,7 @@
             // 
             pedidoTxt.AutoSize = true;
             pedidoTxt.Font = new Font("Segoe UI", 12F);
-            pedidoTxt.Location = new Point(1129, 46);
+            pedidoTxt.Location = new Point(1021, 78);
             pedidoTxt.Name = "pedidoTxt";
             pedidoTxt.Size = new Size(57, 21);
             pedidoTxt.TabIndex = 7;
@@ -124,7 +128,7 @@
             // 
             // quantidadeTxt
             // 
-            quantidadeTxt.Location = new Point(596, 136);
+            quantidadeTxt.Location = new Point(585, 111);
             quantidadeTxt.Name = "quantidadeTxt";
             quantidadeTxt.Size = new Size(195, 23);
             quantidadeTxt.TabIndex = 9;
@@ -134,29 +138,67 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(499, 134);
+            label2.Location = new Point(479, 113);
             label2.Name = "label2";
             label2.Size = new Size(91, 21);
             label2.TabIndex = 11;
             label2.Text = "quantidade:";
             // 
-            // verificarBtn
-            // 
-            verificarBtn.Location = new Point(12, 546);
-            verificarBtn.Name = "verificarBtn";
-            verificarBtn.Size = new Size(156, 85);
-            verificarBtn.TabIndex = 12;
-            verificarBtn.Text = "Verificar estoque";
-            verificarBtn.UseVisualStyleBackColor = true;
-            // 
             // pagamentoBtn
             // 
-            pagamentoBtn.Location = new Point(814, 318);
+            pagamentoBtn.Location = new Point(604, 394);
             pagamentoBtn.Name = "pagamentoBtn";
             pagamentoBtn.Size = new Size(156, 85);
             pagamentoBtn.TabIndex = 13;
             pagamentoBtn.Text = "Escolher pagamento";
             pagamentoBtn.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.CustomFormat = "";
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
+            dateTimePicker1.Location = new Point(1189, 12);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(78, 23);
+            dateTimePicker1.TabIndex = 14;
+            dateTimePicker1.Value = new DateTime(2025, 5, 16, 8, 31, 20, 0);
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
+            // 
+            // dinheiroRecebidoTxt
+            // 
+            dinheiroRecebidoTxt.Location = new Point(992, 599);
+            dinheiroRecebidoTxt.Name = "dinheiroRecebidoTxt";
+            dinheiroRecebidoTxt.Size = new Size(132, 23);
+            dinheiroRecebidoTxt.TabIndex = 15;
+            dinheiroRecebidoTxt.TextChanged += dinheiroRecebido_TextChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 15F);
+            label1.Location = new Point(846, 594);
+            label1.Name = "label1";
+            label1.Size = new Size(140, 28);
+            label1.TabIndex = 16;
+            label1.Text = "Total recebido:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 15F);
+            label3.Location = new Point(922, 638);
+            label3.Name = "label3";
+            label3.Size = new Size(64, 28);
+            label3.TabIndex = 17;
+            label3.Text = "Troco:";
+            // 
+            // TrocoTxt
+            // 
+            TrocoTxt.Location = new Point(992, 643);
+            TrocoTxt.Name = "TrocoTxt";
+            TrocoTxt.Size = new Size(132, 23);
+            TrocoTxt.TabIndex = 18;
+            TrocoTxt.TextChanged += TrocoTxt_TextChanged;
             // 
             // Form1
             // 
@@ -164,8 +206,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1465, 750);
+            Controls.Add(TrocoTxt);
+            Controls.Add(label3);
+            Controls.Add(label1);
+            Controls.Add(dinheiroRecebidoTxt);
+            Controls.Add(dateTimePicker1);
             Controls.Add(pagamentoBtn);
-            Controls.Add(verificarBtn);
             Controls.Add(label2);
             Controls.Add(quantidadeTxt);
             Controls.Add(pedidoTxt);
@@ -195,7 +241,11 @@
         private Label pedidoTxt;
         private TextBox quantidadeTxt;
         private Label label2;
-        private Button verificarBtn;
         private Button pagamentoBtn;
+        private DateTimePicker dateTimePicker1;
+        private TextBox dinheiroRecebidoTxt;
+        private Label label1;
+        private Label label3;
+        private TextBox TrocoTxt;
     }
 }

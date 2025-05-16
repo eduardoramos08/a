@@ -5,7 +5,7 @@ using CARDAPIO_POO;
 public partial class Form1 : Form
 {
     double total = 0;
-    
+
     public Form1()
     {
         InitializeComponent();
@@ -40,7 +40,7 @@ public partial class Form1 : Form
             return;
         }
 
-        if (produto.Quantidade < 5  )
+        if (produto.Quantidade <= 5)
         {
             MessageBox.Show("Aviso\n Produto acabando!");
         }
@@ -77,7 +77,7 @@ public partial class Form1 : Form
         listBox1.Items.Add(new Produto { Codigo = 10, Quantidade = 10, Descricao = "Hambúrguer simples", Preco = 8, Custo = 5 });
         listBox1.Items.Add(new Produto { Codigo = 11, Quantidade = 12, Descricao = "Hambúrguer com queijo - ", Preco = 9, Custo = 6 });
         listBox1.Items.Add(new Produto { Codigo = 12, Quantidade = 23, Descricao = "X - Tudo - ", Preco = 12, Custo = 7 });
-        
+
     }
 
     private void removerBtn_Click(object sender, EventArgs e)
@@ -104,7 +104,7 @@ public partial class Form1 : Form
         MessageBox.Show("O total do seu pedido foi: " + total.ToString("F2"));
         total = 0;
         listBox2.Items.Clear();
-        
+
     }
 
     private void quantidadeTxt_TextChanged(object sender, EventArgs e)
@@ -124,7 +124,23 @@ public partial class Form1 : Form
     {
         for (int i = 0; i < listBox.Items.Count; i++)
         {
-            listBox.Items[i] = listBox.Items[i]; 
+            listBox.Items[i] = listBox.Items[i];
         }
+    }
+
+    private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void dinheiroRecebido_TextChanged(object sender, EventArgs e)
+    {
+        
+
+    }
+
+    private void TrocoTxt_TextChanged(object sender, EventArgs e)
+    {
+
     }
 }

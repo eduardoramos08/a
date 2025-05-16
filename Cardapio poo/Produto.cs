@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace CARDAPIO_POO
 {
     internal class Produto
-    {
+    {       
         private int codigo;
         private string descricao;
         private int quantidade;
         private double preco;
         private double custo;
+        private double total;
 
         public Produto()
         {
@@ -21,15 +22,17 @@ namespace CARDAPIO_POO
             quantidade = 0;
             preco = 0;
             custo = 0;
+            total = 0;
         }
 
-        public Produto(int codigo, string descricao, int quantidade, double preco, double custo)
+        public Produto(int codigo, string descricao, int quantidade, double preco, double custo, double total)
         {
             this.codigo = codigo;
             this.descricao = descricao;
             this.quantidade = quantidade;
             this.preco = preco;
             this.custo = custo;
+            this.total = total;
         }
 
         public int Codigo 
@@ -57,7 +60,13 @@ namespace CARDAPIO_POO
         public double Custo
         {
             get { return custo; }   
-            set { custo = value; }
+            set { custo = value; }            
+        }
+
+        public double Total
+        {
+            get { return total; }
+            set { total = value; }
         }
 
         public override string ToString()
