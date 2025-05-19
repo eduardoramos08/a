@@ -5,7 +5,7 @@ using CARDAPIO_POO;
 public partial class Form1 : Form
 {
     double total = 0;
-
+    string nomeDoCliente = "";
     public Form1()
     {
         InitializeComponent();
@@ -36,7 +36,7 @@ public partial class Form1 : Form
 
         if (produto.Quantidade < quantidadeDesejada)
         {
-            MessageBox.Show("Quantidade insuficiente no estoque! Estoque disponível: " + produto.Quantidade);
+            MessageBox.Show("Quantidade insuficiente no estoque, Estoque disponível: " + produto.Quantidade);
             return;
         }
 
@@ -101,10 +101,41 @@ public partial class Form1 : Form
 
     private void finalizarBtn_Click(object sender, EventArgs e)
     {
-        MessageBox.Show("O total do seu pedido foi: " + total.ToString("F2"));
-        total = 0;
-        listBox2.Items.Clear();
+        string dataHora = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
 
+        if (string.IsNullOrWhiteSpace(nomeDoCliente))
+        {
+            MessageBox.Show("Por favor, insira o nome do cliente.");
+            return;
+        }
+
+        double valorRecebido;
+        if (!double.TryParse(dinheiroRecebidoTxt.Text, out valorRecebido) || valorRecebido < total)
+        {
+            MessageBox.Show("O valor recebido é inválido ou insuficiente.");
+            return;
+        }
+
+        double troco = valorRecebido - total;
+
+
+        MessageBox.Show(
+            $"Compra finalizada\n" +
+            $"Cliente: {nomeDoCliente}\n" +
+            $"\nData e Hora: {dataHora}" +
+            $"\nTotal: R$ {total:F2}" +
+            $"\nValor Recebido: R$ {valorRecebido:F2}" +
+            $"\nTroco: R$ {troco:F2}");
+
+
+        total = 0;
+        totalTxt.Text = "Seu total é R$ 0,00";
+        listBox2.Items.Clear();
+        dinheiroRecebidoTxt.Clear();
+        Troco.Text = "R$ 0,00";
+        nomeTxt.Clear();
+        nomeDoCliente = ""; 
+        quantidadeTxt.Clear();
     }
 
     private void quantidadeTxt_TextChanged(object sender, EventArgs e)
@@ -135,12 +166,38 @@ public partial class Form1 : Form
 
     private void dinheiroRecebido_TextChanged(object sender, EventArgs e)
     {
-        
+        double valorRecebido;
 
+        if (!double.TryParse(dinheiroRecebidoTxt.Text, out valorRecebido))
+        {
+            Troco.Text = "R$ 0,00";
+            return;
+        }
+
+        if (valorRecebido < total)
+        {
+            Troco.Text = "Valor insuficiente.";
+            return;
+        }
+
+        double troco = valorRecebido - total;
+        Troco.Text = "R$" + troco.ToString("F2");
     }
 
     private void TrocoTxt_TextChanged(object sender, EventArgs e)
     {
 
     }
+
+    private void label3_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void nomeTxt_TextChanged(object sender, EventArgs e)
+    {
+        nomeDoCliente = nomeTxt.Text.Trim();
+
+    }
+    
 }
