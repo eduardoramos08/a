@@ -13,7 +13,7 @@ namespace CARDAPIO_POO
         private int quantidade;
         private double preco;
         private double custo;
-        private double total;
+       
 
         public Produto()
         {
@@ -22,7 +22,7 @@ namespace CARDAPIO_POO
             quantidade = 0;
             preco = 0;
             custo = 0;
-            total = 0;
+         
         }
 
         public Produto(int codigo, string descricao, int quantidade, double preco, double custo, double total)
@@ -32,7 +32,7 @@ namespace CARDAPIO_POO
             this.quantidade = quantidade;
             this.preco = preco;
             this.custo = custo;
-            this.total = total;
+            
         }
 
         public int Codigo 
@@ -63,11 +63,6 @@ namespace CARDAPIO_POO
             set { custo = value; }            
         }
 
-        public double Total
-        {
-            get { return total; }
-            set { total = value; }
-        }
 
         public override string ToString()
         {
