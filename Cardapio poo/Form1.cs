@@ -1,30 +1,56 @@
 namespace CARDAPIO_POO;
-using CARDAPIO_POO;
-
-
 public partial class Form1 : Form
 {
     double total = 0;
     string nomeDoCliente = "";
+
     public Form1()
     {
         InitializeComponent();
     }
 
 
+    private void Form1_Load(object sender, EventArgs e)
+    {
+        comboBoxFormaPagamento.Items.AddRange(new string[] { "Dinheiro", "Cartão de Débito", "Cartão de Crédito", "Pix", "Vale Alimentação" });
+
+        var produtos = new List<Produto>
+    {
+        new Produto { Codigo = 1, Quantidade = 20, Descricao = "Pão de queijo ", Preco = 6, Custo = 4 },
+        new Produto { Codigo = 2, Quantidade = 30, Descricao = "Coxinha - ", Preco = 5, Custo = 2.5 },
+        new Produto { Codigo = 3, Quantidade = 30, Descricao = "Risole - ", Preco = 4, Custo = 2.5 },
+        new Produto { Codigo = 4, Quantidade = 30, Descricao = "Esfiha de calabresa - ", Preco = 4, Custo = 2.5 },
+        new Produto { Codigo = 5, Quantidade = 2, Descricao = "Suco natural (300ml) - ", Preco = 4, Custo = 2 },
+        new Produto { Codigo = 6, Quantidade = 5, Descricao = "Refrigerante Lata - ", Preco = 4.50, Custo = 3 },
+        new Produto { Codigo = 7, Quantidade = 5, Descricao = "Àgua mineral(500ml) - ", Preco = 2.50, Custo = 0.75 },
+        new Produto { Codigo = 8, Quantidade = 25, Descricao = "Pastel de carne - ", Preco = 6, Custo = 4 },
+        new Produto { Codigo = 9, Quantidade = 35, Descricao = "Patel de queijo - ", Preco = 5.5, Custo = 3.5 },
+        new Produto { Codigo = 10, Quantidade = 10, Descricao = "Hambúrguer simples", Preco = 8, Custo = 5 },
+        new Produto { Codigo = 11, Quantidade = 12, Descricao = "Hambúrguer com queijo  ", Preco = 9, Custo = 6 },
+        new Produto { Codigo = 12, Quantidade = 23, Descricao = "X - Tudo - ", Preco = 12, Custo = 7 }};
+
+        foreach (Produto p in produtos)
+        {
+            ListViewItem item = new ListViewItem(p.Codigo.ToString());
+            item.SubItems.Add(p.Descricao.TrimEnd(' ', '-'));
+            item.SubItems.Add(p.Quantidade.ToString());
+            item.SubItems.Add(p.Preco.ToString("F2"));
+            item.Tag = p;
+            listViewCardapio.Items.Add(item);
+        }
+    }
+
     private void adicionarBtn_Click(object sender, EventArgs e)
     {
-        // if (listBox1.SelectedItem == null)
-        if (listViewCardapio.SelectedItems.Count == 0) // Alterado
+
+        if (listViewCardapio.SelectedItems.Count == 0)
         {
             MessageBox.Show("Selecione o item do cardápio para adicionar.");
             return;
         }
 
-        // Produto produtoSelecionadoDoCardapio = (Produto)listBox1.SelectedItem;
-        ListViewItem itemSelecionadoCardapio = listViewCardapio.SelectedItems[0]; // Alterado
-        Produto produtoSelecionadoDoCardapio = (Produto)itemSelecionadoCardapio.Tag; // Alterado
-
+        ListViewItem itemSelecionadoCardapio = listViewCardapio.SelectedItems[0];
+        Produto produtoSelecionadoDoCardapio = (Produto)itemSelecionadoCardapio.Tag;
         int quantidadeDesejada;
         if (!int.TryParse(quantidadeTxt.Text, out quantidadeDesejada) || quantidadeDesejada <= 0)
         {
@@ -39,26 +65,22 @@ public partial class Form1 : Form
             return;
         }
 
-        // Lógica de aviso de estoque baixo (pode manter ou refinar)
         if (produtoSelecionadoDoCardapio.Quantidade <= 5 && (produtoSelecionadoDoCardapio.Quantidade - quantidadeDesejada) < 5 && quantidadeDesejada > 0)
         {
-            MessageBox.Show($"Aviso: Estoque de {produtoSelecionadoDoCardapio.Descricao.TrimEnd(' ', '-')} está baixo!");
+            MessageBox.Show($"Aviso: Estoque de {produtoSelecionadoDoCardapio.Descricao.TrimEnd(' ', '-')} está acabando");
         }
 
-        // ItemCarrinho itemExistenteNoCarrinho = null;
-        ListViewItem lviCarrinhoExistente = null; // Para encontrar o ListViewItem no carrinho
+        ListViewItem lviCarrinhoExistente = null;
         ItemCarrinho itemExistenteNoCarrinho = null;
-
-        // foreach (var itemObj in listBox2.Items)
-        foreach (ListViewItem lvi in listViewCarrinho.Items) // Alterado
+        foreach (ListViewItem lvi in listViewCarrinho.Items)
         {
-            // if (itemObj is ItemCarrinho ic)
-            if (lvi.Tag is ItemCarrinho ic) // Alterado
+
+            if (lvi.Tag is ItemCarrinho ic)
             {
                 if (ic.ProdutoAdicionado.Codigo == produtoSelecionadoDoCardapio.Codigo)
                 {
                     itemExistenteNoCarrinho = ic;
-                    lviCarrinhoExistente = lvi; // Guarda o ListViewItem
+                    lviCarrinhoExistente = lvi;
                     break;
                 }
             }
@@ -67,8 +89,7 @@ public partial class Form1 : Form
         if (itemExistenteNoCarrinho != null && lviCarrinhoExistente != null)
         {
             itemExistenteNoCarrinho.QuantidadeNoCarrinho += quantidadeDesejada;
-            // Atualizar o ListViewItem existente no carrinho
-            lviCarrinhoExistente.SubItems[1].Text = itemExistenteNoCarrinho.QuantidadeNoCarrinho.ToString(); // Qtd.
+            lviCarrinhoExistente.SubItems[1].Text = itemExistenteNoCarrinho.QuantidadeNoCarrinho.ToString();
             lviCarrinhoExistente.SubItems[3].Text = (itemExistenteNoCarrinho.ProdutoAdicionado.Preco * itemExistenteNoCarrinho.QuantidadeNoCarrinho).ToString("F2"); // Subtotal
         }
         else
@@ -79,105 +100,52 @@ public partial class Form1 : Form
                 QuantidadeNoCarrinho = quantidadeDesejada
             };
 
-            ListViewItem lviNovoCarrinho = new ListViewItem(novoItemCarrinho.ProdutoAdicionado.Descricao.TrimEnd(' ', '-')); // Coluna 1: Produto
-            lviNovoCarrinho.SubItems.Add(novoItemCarrinho.QuantidadeNoCarrinho.ToString()); // Coluna 2: Qtd.
-            lviNovoCarrinho.SubItems.Add(novoItemCarrinho.ProdutoAdicionado.Preco.ToString("F2")); // Coluna 3: Preço Unit.
-            lviNovoCarrinho.SubItems.Add((novoItemCarrinho.ProdutoAdicionado.Preco * novoItemCarrinho.QuantidadeNoCarrinho).ToString("F2")); // Coluna 4: Subtotal
-            lviNovoCarrinho.Tag = novoItemCarrinho; // Armazena o objeto ItemCarrinho
+            ListViewItem lviNovoCarrinho = new ListViewItem(novoItemCarrinho.ProdutoAdicionado.Descricao.TrimEnd(' ', '-'));
+            lviNovoCarrinho.SubItems.Add(novoItemCarrinho.QuantidadeNoCarrinho.ToString());
+            lviNovoCarrinho.SubItems.Add(novoItemCarrinho.ProdutoAdicionado.Preco.ToString("F2"));
+            lviNovoCarrinho.SubItems.Add((novoItemCarrinho.ProdutoAdicionado.Preco * novoItemCarrinho.QuantidadeNoCarrinho).ToString("F2"));
+            lviNovoCarrinho.Tag = novoItemCarrinho;
 
-            listViewCarrinho.Items.Add(lviNovoCarrinho); // Alterado
+            listViewCarrinho.Items.Add(lviNovoCarrinho);
         }
 
         total += produtoSelecionadoDoCardapio.Preco * quantidadeDesejada;
         totalTxt.Text = "Seu total é R$ " + total.ToString("F2");
 
         produtoSelecionadoDoCardapio.Quantidade -= quantidadeDesejada;
+        itemSelecionadoCardapio.SubItems[2].Text = produtoSelecionadoDoCardapio.Quantidade.ToString();
 
-        // Atualizar o item no listViewCardapio (estoque)
-        // As colunas são base 0. Se "Estoque" é a 3ª coluna, o índice é 2.
-        // Verifique a ordem das colunas que você definiu no Designer:
-        // Código (0), Descrição (1), Estoque (2), Preço (3) ...
-        itemSelecionadoCardapio.SubItems[2].Text = produtoSelecionadoDoCardapio.Quantidade.ToString(); // Atualiza o estoque
-
-        // AtualizarListBox(listBox1); // Removido ou comentado
         quantidadeTxt.Clear();
     }
-
-
-    private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-     
-    }
-
-    private void Form1_Load(object sender, EventArgs e)
-    {
-        // Limpar itens antigos (caso o Load seja chamado mais de uma vez, improvável aqui)
-        listViewCardapio.Items.Clear();
-
-        // Criar uma lista de produtos (mesma de antes)
-        var produtos = new List<Produto>
-    {
-        new Produto { Codigo = 1, Quantidade = 20, Descricao = "Pão de queijo ", Preco = 6, Custo = 4 },
-        new Produto { Codigo = 2, Quantidade = 30, Descricao = "Coxinha - ", Preco = 5, Custo = 2.5 },
-        new Produto { Codigo = 3, Quantidade = 30, Descricao = "Risole - ", Preco = 4, Custo = 2.5 },
-        new Produto { Codigo = 4, Quantidade = 30, Descricao = "Esfiha de calabresa - ", Preco = 4, Custo = 2.5 },
-        new Produto { Codigo = 5, Quantidade = 2, Descricao = "Suco natural (300ml) - ", Preco = 4, Custo = 2 },
-        new Produto { Codigo = 6, Quantidade = 5, Descricao = "Refrigerante Lata - ", Preco = 4.50, Custo = 3 },
-        new Produto { Codigo = 7, Quantidade = 5, Descricao = "Àgua mineral(500ml) - ", Preco = 2.50, Custo = 0.75 },
-        new Produto { Codigo = 8, Quantidade = 25, Descricao = "Pastel de carne - ", Preco = 6, Custo = 4 },
-        new Produto { Codigo = 9, Quantidade = 35, Descricao = "Patel de queijo - ", Preco = 5.5, Custo = 3.5 },
-        new Produto { Codigo = 10, Quantidade = 10, Descricao = "Hambúrguer simples", Preco = 8, Custo = 5 },
-        new Produto { Codigo = 11, Quantidade = 12, Descricao = "Hambúrguer com queijo - ", Preco = 9, Custo = 6 },
-        new Produto { Codigo = 12, Quantidade = 23, Descricao = "X - Tudo - ", Preco = 12, Custo = 7 }
-    };
-
-        foreach (Produto p in produtos)
-        {
-            ListViewItem item = new ListViewItem(p.Codigo.ToString()); // Coluna 1: Código
-            item.SubItems.Add(p.Descricao.TrimEnd(' ', '-'));        // Coluna 2: Descrição
-            item.SubItems.Add(p.Quantidade.ToString());             // Coluna 3: Estoque
-            item.SubItems.Add(p.Preco.ToString("F2"));              // Coluna 4: Preço
-                                                                    // Se você adicionou a coluna Custo no Designer:
-                                                                    // item.SubItems.Add(p.Custo.ToString("F2"));           // Coluna 5: Custo
-
-            item.Tag = p; // IMPORTANTE: Armazenar o objeto Produto completo na Tag do item
-            listViewCardapio.Items.Add(item);
-        }
-    }
-
     private void removerBtn_Click(object sender, EventArgs e)
     {
-        // if (listBox2.SelectedItem == null)
-        if (listViewCarrinho.SelectedItems.Count == 0) // Alterado
+        if (listViewCarrinho.SelectedItems.Count == 0)
         {
             MessageBox.Show("Selecione o item do carrinho para remover.");
             return;
         }
 
-        // ItemCarrinho itemCarrinhoSelecionado = (ItemCarrinho)listBox2.SelectedItem;
-        ListViewItem itemSelecionadoCarrinhoLVI = listViewCarrinho.SelectedItems[0]; // Alterado
-        ItemCarrinho itemCarrinhoSelecionado = (ItemCarrinho)itemSelecionadoCarrinhoLVI.Tag; // Alterado
+
+        ListViewItem itemSelecionadoCarrinhoLVI = listViewCarrinho.SelectedItems[0];
+        ItemCarrinho itemCarrinhoSelecionado = (ItemCarrinho)itemSelecionadoCarrinhoLVI.Tag;
 
         total -= itemCarrinhoSelecionado.ProdutoAdicionado.Preco * itemCarrinhoSelecionado.QuantidadeNoCarrinho;
         totalTxt.Text = "Seu total é R$ " + total.ToString("F2");
 
         itemCarrinhoSelecionado.ProdutoAdicionado.Quantidade += itemCarrinhoSelecionado.QuantidadeNoCarrinho;
 
-        // listBox2.Items.Remove(itemCarrinhoSelecionado);
-        listViewCarrinho.Items.Remove(itemSelecionadoCarrinhoLVI); // Alterado
+        listViewCarrinho.Items.Remove(itemSelecionadoCarrinhoLVI);
 
-        // Atualizar o estoque no listViewCardapio
         foreach (ListViewItem lviCardapio in listViewCardapio.Items)
         {
             Produto pCardapio = (Produto)lviCardapio.Tag;
             if (pCardapio.Codigo == itemCarrinhoSelecionado.ProdutoAdicionado.Codigo)
             {
-                // Mesma lógica de índice da coluna de estoque que no adicionarBtn_Click
-                lviCardapio.SubItems[2].Text = pCardapio.Quantidade.ToString(); // Atualiza Estoque
-                break; // Encontrou o produto, pode sair do loop
+                lviCardapio.SubItems[2].Text = pCardapio.Quantidade.ToString();
+                break;
             }
         }
-        // AtualizarListBox(listBox1); // Removido ou comentado
+
         AtualizarTroco();
     }
 
@@ -192,56 +160,59 @@ public partial class Form1 : Form
             return;
         }
 
-        // if (listBox2.Items.Count == 0)
-        if (listViewCarrinho.Items.Count == 0) // Alterado
+        if (listViewCarrinho.Items.Count == 0)
         {
             MessageBox.Show("O carrinho está vazio. Adicione itens para finalizar a compra.");
             return;
         }
 
-        double valorRecebido;
-        if (!double.TryParse(dinheiroRecebidoTxt.Text, out valorRecebido) || valorRecebido < 0)
+        string formaPagamento = comboBoxFormaPagamento.SelectedItem.ToString();
+
+        switch (formaPagamento)
         {
-            MessageBox.Show("O valor recebido é inválido.");
-            dinheiroRecebidoTxt.Focus();
-            return;
-        }
-        if (valorRecebido < total)
-        {
-            MessageBox.Show("O valor recebido é insuficiente.");
-            dinheiroRecebidoTxt.Focus();
-            return;
+            case "Dinheiro":
+                double valorRecebido;
+                if (!double.TryParse(dinheiroRecebidoTxt.Text, out valorRecebido) || valorRecebido < total)
+                {
+                    MessageBox.Show("Valor recebido inválido ou insuficiente.");
+                    dinheiroRecebidoTxt.Focus();
+                    return;
+                }
+                break;
+
+            case "Cartão de Débito":
+            case "Cartão de Crédito":
+            case "Pix":
+            case "Vale Alimentação":
+                dinheiroRecebidoTxt.Enabled = false;
+                break;
         }
 
-        double troco = valorRecebido - total;
+        double troco = 0;
+        if (formaPagamento == "Dinheiro")
+        {
+            double valorRecebidoFinal = double.Parse(dinheiroRecebidoTxt.Text);
+            troco = valorRecebidoFinal - total;
+        }
 
         string itensCompradosStr = "Itens Comprados:\n";
-        // foreach (ItemCarrinho item in listBox2.Items)
-        foreach (ListViewItem lvi in listViewCarrinho.Items) // Alterado
+        foreach (ListViewItem lvi in listViewCarrinho.Items)
         {
-            ItemCarrinho item = (ItemCarrinho)lvi.Tag; // Alterado
+            ItemCarrinho item = (ItemCarrinho)lvi.Tag;
             itensCompradosStr += $"{item.ProdutoAdicionado.Descricao.TrimEnd(' ', '-')} - Qtd: {item.QuantidadeNoCarrinho} - Subtotal: R$ {(item.ProdutoAdicionado.Preco * item.QuantidadeNoCarrinho):F2}\n";
         }
 
         MessageBox.Show(
-            $"Compra finalizada!\n" +
-            $"\nCliente: {nomeDoCliente}\n" +
-            $"\nData e Hora: {dataHora}\n" +
-            $"\n{itensCompradosStr}" +
-            $"\nTotal: R$ {total:F2}" +
-            $"\nValor Recebido: R$ {valorRecebido:F2}" +
-            $"\nTroco: R$ {troco:F2}",
+            $"Compra finalizada!\n\n" +
+            $"Cliente: {nomeDoCliente}\n" +
+            $"Data e Hora: {dataHora}\n" +
+            $"Forma de Pagamento: {formaPagamento}\n" +
+            $"\n{itensCompradosStr}\n" +
+            $"Total: R$ {total:F2}\n" +
+            (formaPagamento == "Dinheiro" ? $"Valor Recebido: R$ {double.Parse(dinheiroRecebidoTxt.Text):F2}\nTroco: R$ {troco:F2}" : ""),
             "Recibo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-        total = 0;
-        totalTxt.Text = "Seu total é R$ 0,00";
-        // listBox2.Items.Clear();
-        listViewCarrinho.Items.Clear(); // Alterado
-        dinheiroRecebidoTxt.Clear();
-        Troco.Text = "R$ 0,00";
-        nomeTxt.Clear();
-        nomeDoCliente = "";
-        quantidadeTxt.Clear();
+        LimparCampos();
     }
 
     private void quantidadeTxt_TextChanged(object sender, EventArgs e)
@@ -256,15 +227,19 @@ public partial class Form1 : Form
         }
     }
 
-    private void AtualizarListBox(ListBox listBox)
+    private void LimparCampos()
     {
-
-        object[] items = new object[listBox.Items.Count];
-        listBox.Items.CopyTo(items, 0);
-        listBox.Items.Clear();
-        listBox.Items.AddRange(items);
-
+        total = 0;
+        totalTxt.Text = "Seu total é R$ 0,00";
+        listViewCarrinho.Items.Clear();
+        dinheiroRecebidoTxt.Clear();
+        Troco.Text = "R$ 0,00";
+        nomeTxt.Clear();
+        nomeDoCliente = "";
+        quantidadeTxt.Clear();
+        dinheiroRecebidoTxt.Enabled = true;
     }
+
 
 
     private void dinheiroRecebido_TextChanged(object sender, EventArgs e)
@@ -272,13 +247,13 @@ public partial class Form1 : Form
         AtualizarTroco();
     }
 
-    private void AtualizarTroco() 
+    private void AtualizarTroco()
     {
         double valorRecebido;
 
         if (!double.TryParse(dinheiroRecebidoTxt.Text, out valorRecebido) || valorRecebido < 0)
         {
-            Troco.Text = "R$ 0,00"; 
+            Troco.Text = "R$ 0,00";
             return;
         }
 
@@ -293,9 +268,9 @@ public partial class Form1 : Form
     }
 
 
-    private void TrocoTxt_TextChanged(object sender, EventArgs e) 
+    private void TrocoTxt_TextChanged(object sender, EventArgs e)
     {
- 
+
     }
 
     private void label3_Click(object sender, EventArgs e)
@@ -307,10 +282,39 @@ public partial class Form1 : Form
     {
         nomeDoCliente = nomeTxt.Text.Trim();
     }
-
-    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { }
-    private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e) { }
     private void dateTimePicker1_ValueChanged(object sender, EventArgs e) { }
 
-}
+    private void comboBoxFormaPagamento_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (comboBoxFormaPagamento.SelectedItem == null) return;
 
+        string formaPagamento = comboBoxFormaPagamento.SelectedItem.ToString();
+
+        if (formaPagamento == "Dinheiro")
+        {
+            dinheiroRecebidoTxt.Enabled = true;
+            dinheiroRecebidoTxt.Visible = true;
+            Troco.Visible = true;
+            label1.Visible = true;
+            label3.Visible = true;
+        }
+        else
+        {
+            dinheiroRecebidoTxt.Enabled = false;
+            dinheiroRecebidoTxt.Visible = false;
+            Troco.Visible = false;
+            label1.Visible = false;
+            label3.Visible = false;
+        }
+    }
+
+    private void label1_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void cardapioTxt_Click(object sender, EventArgs e)
+    {
+
+    }
+}

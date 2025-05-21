@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CARDAPIO_POO
+﻿namespace CARDAPIO_POO
 {
     internal class Produto
-    {       
+    {
         private int codigo;
         private string descricao;
         private int quantidade;
         private double preco;
         private double custo;
-       
+
 
         public Produto()
         {
@@ -22,7 +16,7 @@ namespace CARDAPIO_POO
             quantidade = 0;
             preco = 0;
             custo = 0;
-         
+
         }
 
         public Produto(int codigo, string descricao, int quantidade, double preco, double custo, double total)
@@ -32,10 +26,10 @@ namespace CARDAPIO_POO
             this.quantidade = quantidade;
             this.preco = preco;
             this.custo = custo;
-            
+
         }
 
-        public int Codigo 
+        public int Codigo
         {
             get { return codigo; }
             set { codigo = value; }
@@ -43,7 +37,7 @@ namespace CARDAPIO_POO
 
         public string Descricao
         {
-            get { return descricao; }   
+            get { return descricao; }
             set { descricao = value; }
         }
 
@@ -52,15 +46,15 @@ namespace CARDAPIO_POO
             get { return quantidade; }
             set { quantidade = value; }
         }
-        public double Preco 
+        public double Preco
         {
             get { return preco; }
             set { preco = value; }
         }
         public double Custo
         {
-            get { return custo; }   
-            set { custo = value; }            
+            get { return custo; }
+            set { custo = value; }
         }
 
 
