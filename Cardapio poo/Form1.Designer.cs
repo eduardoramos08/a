@@ -63,7 +63,7 @@
             // 
             totalTxt.AutoSize = true;
             totalTxt.Font = new Font("Segoe UI", 12F);
-            totalTxt.Location = new Point(1030, 544);
+            totalTxt.Location = new Point(1041, 500);
             totalTxt.Name = "totalTxt";
             totalTxt.Size = new Size(0, 21);
             totalTxt.TabIndex = 0;
@@ -71,18 +71,19 @@
             // cardapioTxt
             // 
             cardapioTxt.AutoSize = true;
-            cardapioTxt.Font = new Font("Segoe UI", 15F);
-            cardapioTxt.Location = new Point(189, 168);
+            cardapioTxt.Font = new Font("Bauhaus 93", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cardapioTxt.Location = new Point(199, 129);
             cardapioTxt.Name = "cardapioTxt";
-            cardapioTxt.Size = new Size(92, 28);
+            cardapioTxt.Size = new Size(96, 23);
             cardapioTxt.TabIndex = 1;
             cardapioTxt.Text = "Cardápio";
             cardapioTxt.Click += cardapioTxt_Click;
             // 
             // adicionarBtn
             // 
-            adicionarBtn.Font = new Font("Segoe UI", 15F);
-            adicionarBtn.Location = new Point(614, 140);
+            adicionarBtn.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            adicionarBtn.ForeColor = SystemColors.ControlText;
+            adicionarBtn.Location = new Point(651, 210);
             adicionarBtn.Name = "adicionarBtn";
             adicionarBtn.Size = new Size(129, 56);
             adicionarBtn.TabIndex = 2;
@@ -92,8 +93,8 @@
             // 
             // removerBtn
             // 
-            removerBtn.Font = new Font("Segoe UI", 15F);
-            removerBtn.Location = new Point(614, 214);
+            removerBtn.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            removerBtn.Location = new Point(651, 284);
             removerBtn.Name = "removerBtn";
             removerBtn.Size = new Size(129, 56);
             removerBtn.TabIndex = 3;
@@ -103,8 +104,8 @@
             // 
             // finalizarBtn
             // 
-            finalizarBtn.Font = new Font("Segoe UI", 15F);
-            finalizarBtn.Location = new Point(702, 482);
+            finalizarBtn.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            finalizarBtn.Location = new Point(651, 435);
             finalizarBtn.Name = "finalizarBtn";
             finalizarBtn.Size = new Size(129, 56);
             finalizarBtn.TabIndex = 4;
@@ -115,16 +116,16 @@
             // pedidoTxt
             // 
             pedidoTxt.AutoSize = true;
-            pedidoTxt.Font = new Font("Segoe UI", 15F);
-            pedidoTxt.Location = new Point(1051, 64);
+            pedidoTxt.Font = new Font("Bauhaus 93", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            pedidoTxt.Location = new Point(1056, 124);
             pedidoTxt.Name = "pedidoTxt";
-            pedidoTxt.Size = new Size(73, 28);
+            pedidoTxt.Size = new Size(73, 23);
             pedidoTxt.TabIndex = 7;
             pedidoTxt.Text = "Pedido";
             // 
             // quantidadeTxt
             // 
-            quantidadeTxt.Location = new Point(585, 111);
+            quantidadeTxt.Location = new Point(622, 170);
             quantidadeTxt.Name = "quantidadeTxt";
             quantidadeTxt.Size = new Size(195, 23);
             quantidadeTxt.TabIndex = 9;
@@ -133,10 +134,10 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 15F);
-            label2.Location = new Point(465, 106);
+            label2.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(492, 170);
             label2.Name = "label2";
-            label2.Size = new Size(116, 28);
+            label2.Size = new Size(95, 24);
             label2.TabIndex = 11;
             label2.Text = "quantidade:";
             // 
@@ -149,11 +150,12 @@
             dateTimePicker1.Size = new Size(78, 23);
             dateTimePicker1.TabIndex = 14;
             dateTimePicker1.Value = new DateTime(2025, 5, 16, 8, 31, 20, 0);
+            dateTimePicker1.Visible = false;
             dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // dinheiroRecebidoTxt
             // 
-            dinheiroRecebidoTxt.Location = new Point(702, 385);
+            dinheiroRecebidoTxt.Location = new Point(688, 517);
             dinheiroRecebidoTxt.Name = "dinheiroRecebidoTxt";
             dinheiroRecebidoTxt.Size = new Size(124, 23);
             dinheiroRecebidoTxt.TabIndex = 15;
@@ -162,10 +164,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 15F);
-            label1.Location = new Point(556, 380);
+            label1.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(569, 516);
             label1.Name = "label1";
-            label1.Size = new Size(140, 28);
+            label1.Size = new Size(117, 24);
             label1.TabIndex = 16;
             label1.Text = "Total recebido:";
             label1.Click += label1_Click;
@@ -173,10 +175,10 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 15F);
-            label3.Location = new Point(632, 425);
+            label3.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(626, 560);
             label3.Name = "label3";
-            label3.Size = new Size(64, 28);
+            label3.Size = new Size(56, 24);
             label3.TabIndex = 17;
             label3.Text = "Troco:";
             label3.Click += label3_Click;
@@ -185,7 +187,7 @@
             // 
             Troco.AutoSize = true;
             Troco.Font = new Font("Segoe UI", 13F);
-            Troco.Location = new Point(702, 430);
+            Troco.Location = new Point(688, 561);
             Troco.Name = "Troco";
             Troco.Size = new Size(124, 25);
             Troco.TabIndex = 19;
@@ -194,16 +196,16 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 15F);
-            label4.Location = new Point(626, 342);
+            label4.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(622, 356);
             label4.Name = "label4";
-            label4.Size = new Size(70, 28);
+            label4.Size = new Size(60, 24);
             label4.TabIndex = 20;
             label4.Text = "Nome:";
             // 
             // nomeTxt
             // 
-            nomeTxt.Location = new Point(702, 347);
+            nomeTxt.Location = new Point(688, 360);
             nomeTxt.Name = "nomeTxt";
             nomeTxt.Size = new Size(124, 23);
             nomeTxt.TabIndex = 21;
@@ -211,13 +213,14 @@
             // 
             // listViewCardapio
             // 
+            listViewCardapio.BackColor = Color.FromArgb(243, 241, 238);
             listViewCardapio.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
             listViewCardapio.FullRowSelect = true;
             listViewCardapio.GridLines = true;
-            listViewCardapio.Location = new Point(39, 214);
+            listViewCardapio.Location = new Point(50, 170);
             listViewCardapio.MultiSelect = false;
             listViewCardapio.Name = "listViewCardapio";
-            listViewCardapio.Size = new Size(430, 505);
+            listViewCardapio.Size = new Size(415, 505);
             listViewCardapio.TabIndex = 22;
             listViewCardapio.UseCompatibleStateImageBehavior = false;
             listViewCardapio.View = View.Details;
@@ -245,13 +248,14 @@
             // 
             // listViewCarrinho
             // 
+            listViewCarrinho.BackColor = Color.FromArgb(243, 241, 238);
             listViewCarrinho.Columns.AddRange(new ColumnHeader[] { columnHeader5, columnHeader6, columnHeader7, columnHeader8 });
             listViewCarrinho.FullRowSelect = true;
             listViewCarrinho.GridLines = true;
-            listViewCarrinho.Location = new Point(928, 214);
+            listViewCarrinho.Location = new Point(939, 170);
             listViewCarrinho.MultiSelect = false;
             listViewCarrinho.Name = "listViewCarrinho";
-            listViewCarrinho.Size = new Size(339, 505);
+            listViewCarrinho.Size = new Size(326, 505);
             listViewCarrinho.TabIndex = 23;
             listViewCarrinho.UseCompatibleStateImageBehavior = false;
             listViewCarrinho.View = View.Details;
@@ -283,7 +287,7 @@
             // 
             comboBoxFormaPagamento.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxFormaPagamento.FormattingEnabled = true;
-            comboBoxFormaPagamento.Location = new Point(702, 309);
+            comboBoxFormaPagamento.Location = new Point(688, 390);
             comboBoxFormaPagamento.Name = "comboBoxFormaPagamento";
             comboBoxFormaPagamento.Size = new Size(124, 23);
             comboBoxFormaPagamento.TabIndex = 24;
@@ -292,12 +296,12 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 15F);
-            label5.Location = new Point(475, 309);
+            label5.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(502, 386);
             label5.Name = "label5";
-            label5.Size = new Size(221, 28);
+            label5.Size = new Size(187, 24);
             label5.TabIndex = 25;
-            label5.Text = "Método de pagamento ";
+            label5.Text = "Método de pagamento: ";
             // 
             // pictureBox1
             // 
@@ -314,8 +318,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(225, 255, 0);
             BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(1465, 750);
+            ClientSize = new Size(1291, 736);
             Controls.Add(pictureBox1);
             Controls.Add(label5);
             Controls.Add(comboBoxFormaPagamento);

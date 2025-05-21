@@ -98,3 +98,4 @@ F:\Downloads\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO POO.pdb
 F:\Downloads\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO POO.genruntimeconfig.cache
 F:\Downloads\a\CARDAPIO POO\obj\Debug\net8.0-windows\ref\CARDAPIO POO.dll
 F:\Downloads\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO_POO.Properties.Resources.resources
+C:\Users\25163062\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO_POO.Properties.Resources.resources
