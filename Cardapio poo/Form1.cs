@@ -51,6 +51,7 @@ public partial class Form1 : Form
 
         ListViewItem itemSelecionadoCardapio = listViewCardapio.SelectedItems[0];
         Produto produtoSelecionadoDoCardapio = (Produto)itemSelecionadoCardapio.Tag;
+
         int quantidadeDesejada;
         if (!int.TryParse(quantidadeTxt.Text, out quantidadeDesejada) || quantidadeDesejada <= 0)
         {
@@ -90,7 +91,7 @@ public partial class Form1 : Form
         {
             itemExistenteNoCarrinho.QuantidadeNoCarrinho += quantidadeDesejada;
             lviCarrinhoExistente.SubItems[1].Text = itemExistenteNoCarrinho.QuantidadeNoCarrinho.ToString();
-            lviCarrinhoExistente.SubItems[3].Text = (itemExistenteNoCarrinho.ProdutoAdicionado.Preco * itemExistenteNoCarrinho.QuantidadeNoCarrinho).ToString("F2"); // Subtotal
+            lviCarrinhoExistente.SubItems[3].Text = (itemExistenteNoCarrinho.ProdutoAdicionado.Preco * itemExistenteNoCarrinho.QuantidadeNoCarrinho).ToString("F2"); 
         }
         else
         {
@@ -314,6 +315,11 @@ public partial class Form1 : Form
     }
 
     private void cardapioTxt_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void Troco_Click(object sender, EventArgs e)
     {
 
     }
