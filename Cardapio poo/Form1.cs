@@ -1,8 +1,13 @@
+using static CARDAPIO_POO.Pedido;
+
 namespace CARDAPIO_POO;
 public partial class Form1 : Form
 {
+
     double total = 0;
     string nomeDoCliente = "";
+    List<ItemCarrinho> produtos1 = new List<ItemCarrinho>();
+
 
     public Form1()
     {
@@ -42,7 +47,6 @@ public partial class Form1 : Form
 
     private void adicionarBtn_Click(object sender, EventArgs e)
     {
-
         if (listViewCardapio.SelectedItems.Count == 0)
         {
             MessageBox.Show("Selecione o item do cardápio para adicionar.");
@@ -91,15 +95,18 @@ public partial class Form1 : Form
         {
             itemExistenteNoCarrinho.QuantidadeNoCarrinho += quantidadeDesejada;
             lviCarrinhoExistente.SubItems[1].Text = itemExistenteNoCarrinho.QuantidadeNoCarrinho.ToString();
-            lviCarrinhoExistente.SubItems[3].Text = (itemExistenteNoCarrinho.ProdutoAdicionado.Preco * itemExistenteNoCarrinho.QuantidadeNoCarrinho).ToString("F2"); 
+            lviCarrinhoExistente.SubItems[3].Text = (itemExistenteNoCarrinho.ProdutoAdicionado.Preco * itemExistenteNoCarrinho.QuantidadeNoCarrinho).ToString("F2");
         }
         else
         {
+
             ItemCarrinho novoItemCarrinho = new ItemCarrinho
             {
+
                 ProdutoAdicionado = produtoSelecionadoDoCardapio,
                 QuantidadeNoCarrinho = quantidadeDesejada
             };
+            produtos1.Add(novoItemCarrinho);
 
             ListViewItem lviNovoCarrinho = new ListViewItem(novoItemCarrinho.ProdutoAdicionado.Descricao.TrimEnd(' ', '-'));
             lviNovoCarrinho.SubItems.Add(novoItemCarrinho.QuantidadeNoCarrinho.ToString());
@@ -214,6 +221,16 @@ public partial class Form1 : Form
             "Recibo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         LimparCampos();
+
+        Pedido pedido = new Pedido
+        {
+            nome = nomeTxt.Text,
+            carrinho = produtos1,
+            date = new DateTime(),
+            total = total,
+            status = (statusPedido)Enum.Parse(typeof(statusPedido), "Criado")
+        };
+        Repositorio.listaPedidos.Add(pedido);
     }
 
     private void quantidadeTxt_TextChanged(object sender, EventArgs e)
@@ -322,5 +339,11 @@ public partial class Form1 : Form
     private void Troco_Click(object sender, EventArgs e)
     {
 
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+        FormBalcao formBalcao = new FormBalcao();
+        formBalcao.Show();
     }
 }

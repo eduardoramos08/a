@@ -56,6 +56,8 @@
             comboBoxFormaPagamento = new ComboBox();
             label5 = new Label();
             pictureBox1 = new PictureBox();
+            listBox1 = new ListBox();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -318,6 +320,25 @@
             pictureBox1.TabIndex = 26;
             pictureBox1.TabStop = false;
             // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(547, 539);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(385, 94);
+            listBox1.TabIndex = 27;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(755, 510);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 28;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -325,6 +346,8 @@
             BackColor = Color.FromArgb(225, 255, 0);
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(1574, 736);
+            Controls.Add(button1);
+            Controls.Add(listBox1);
             Controls.Add(pictureBox1);
             Controls.Add(label5);
             Controls.Add(comboBoxFormaPagamento);
@@ -385,5 +408,7 @@
         private ComboBox comboBoxFormaPagamento;
         private Label label5;
         private PictureBox pictureBox1;
+        private ListBox listBox1;
+        private Button button1;
     }
 }

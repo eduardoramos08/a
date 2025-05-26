@@ -1,6 +1,6 @@
 ﻿namespace CARDAPIO_POO
 {
-    internal class Produto
+    public class Produto
     {
         private int codigo;
         private string descricao;
