@@ -5,8 +5,8 @@
         private int codigo;
         private string descricao;
         private int quantidade;
-        private double preco;
-        private double custo;
+        private decimal preco;
+        private decimal custo;
 
 
         public Produto()
@@ -19,7 +19,7 @@
 
         }
 
-        public Produto(int codigo, string descricao, int quantidade, double preco, double custo, double total)
+        public Produto(int codigo, string descricao, int quantidade, decimal preco, decimal custo, double total)
         {
             this.codigo = codigo;
             this.descricao = descricao;
@@ -46,12 +46,12 @@
             get { return quantidade; }
             set { quantidade = value; }
         }
-        public double Preco
+        public decimal Preco
         {
             get { return preco; }
             set { preco = value; }
         }
-        public double Custo
+        public decimal Custo
         {
             get { return custo; }
             set { custo = value; }

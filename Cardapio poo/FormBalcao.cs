@@ -16,16 +16,21 @@ namespace CARDAPIO_POO
         public FormBalcao()
         {
             InitializeComponent();
-            foreach (Pedido produto in Repositorio.listaPedidos)
-            {
-                listBox1.Items.Add(produto);
-            }
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            
+
+
+        }
+
+        private void FormBalcao_Load(object sender, EventArgs e)
+        {
+            foreach (var pedido in Repositorio.listaPedidos)
+            {
+                listBox1.Items.Add(pedido);
+            }
         }
     }
 }

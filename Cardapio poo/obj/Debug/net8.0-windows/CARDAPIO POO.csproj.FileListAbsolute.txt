@@ -118,3 +118,22 @@ C:\Users\25163062\Downloads\a\CARDAPIO POO\obj\Debug\net8.0-windows\refint\CARDA
 C:\Users\25163062\Downloads\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO POO.pdb
 C:\Users\25163062\Downloads\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO POO.genruntimeconfig.cache
 C:\Users\25163062\Downloads\a\CARDAPIO POO\obj\Debug\net8.0-windows\ref\CARDAPIO POO.dll
+F:\Desktop\a\CARDAPIO POO\bin\Debug\net8.0-windows\CARDAPIO POO.exe
+F:\Desktop\a\CARDAPIO POO\bin\Debug\net8.0-windows\CARDAPIO POO.deps.json
+F:\Desktop\a\CARDAPIO POO\bin\Debug\net8.0-windows\CARDAPIO POO.runtimeconfig.json
+F:\Desktop\a\CARDAPIO POO\bin\Debug\net8.0-windows\CARDAPIO POO.dll
+F:\Desktop\a\CARDAPIO POO\bin\Debug\net8.0-windows\CARDAPIO POO.pdb
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO_POO.Form1.resources
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO_POO.FormBalcao.resources
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO_POO.Properties.Resources.resources
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO POO.csproj.GenerateResource.cache
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO POO.GeneratedMSBuildEditorConfig.editorconfig
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO POO.AssemblyInfoInputs.cache
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO POO.AssemblyInfo.cs
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO POO.csproj.CoreCompileInputs.cache
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO POO.sourcelink.json
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO POO.dll
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\refint\CARDAPIO POO.dll
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO POO.pdb
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\CARDAPIO POO.genruntimeconfig.cache
+F:\Desktop\a\CARDAPIO POO\obj\Debug\net8.0-windows\ref\CARDAPIO POO.dll

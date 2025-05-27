@@ -4,7 +4,7 @@ namespace CARDAPIO_POO;
 public partial class Form1 : Form
 {
 
-    double total = 0;
+    decimal total = 0;
     string nomeDoCliente = "";
     List<ItemCarrinho> produtos1 = new List<ItemCarrinho>();
 
@@ -18,21 +18,21 @@ public partial class Form1 : Form
     private void Form1_Load(object sender, EventArgs e)
     {
         comboBoxFormaPagamento.Items.AddRange(new string[] { "Dinheiro", "Cartão de Débito", "Cartão de Crédito", "Pix", "Vale Alimentação" });
-
+        comboBoxFormaPagamento.SelectedIndex = 3;
         var produtos = new List<Produto>
     {
-        new Produto { Codigo = 1, Quantidade = 20, Descricao = "Pão de queijo ", Preco = 6, Custo = 4 },
-        new Produto { Codigo = 2, Quantidade = 30, Descricao = "Coxinha - ", Preco = 5, Custo = 2.5 },
-        new Produto { Codigo = 3, Quantidade = 30, Descricao = "Risole - ", Preco = 4, Custo = 2.5 },
-        new Produto { Codigo = 4, Quantidade = 30, Descricao = "Esfiha de calabresa - ", Preco = 4, Custo = 2.5 },
-        new Produto { Codigo = 5, Quantidade = 2, Descricao = "Suco natural (300ml) - ", Preco = 4, Custo = 2 },
-        new Produto { Codigo = 6, Quantidade = 5, Descricao = "Refrigerante Lata - ", Preco = 4.50, Custo = 3 },
-        new Produto { Codigo = 7, Quantidade = 5, Descricao = "Àgua mineral(500ml) - ", Preco = 2.50, Custo = 0.75 },
-        new Produto { Codigo = 8, Quantidade = 25, Descricao = "Pastel de carne - ", Preco = 6, Custo = 4 },
-        new Produto { Codigo = 9, Quantidade = 35, Descricao = "Patel de queijo - ", Preco = 5.5, Custo = 3.5 },
-        new Produto { Codigo = 10, Quantidade = 10, Descricao = "Hambúrguer simples", Preco = 8, Custo = 5 },
-        new Produto { Codigo = 11, Quantidade = 12, Descricao = "Hambúrguer com queijo  ", Preco = 9, Custo = 6 },
-        new Produto { Codigo = 12, Quantidade = 23, Descricao = "X - Tudo - ", Preco = 12, Custo = 7 }};
+        new Produto { Codigo = 1, Quantidade = 20, Descricao = "Pão de queijo ", Preco = 6, Custo = 4.00m },
+        new Produto { Codigo = 2, Quantidade = 30, Descricao = "Coxinha - ", Preco = 5, Custo = 2.5m },
+        new Produto { Codigo = 3, Quantidade = 30, Descricao = "Risole - ", Preco = 4, Custo = 2.5m },
+        new Produto { Codigo = 4, Quantidade = 30, Descricao = "Esfiha de calabresa - ", Preco = 4.00m, Custo = 2.5m },
+        new Produto { Codigo = 5, Quantidade = 2, Descricao = "Suco natural (300ml) - ", Preco = 4.00m, Custo = 2.00m },
+        new Produto { Codigo = 6, Quantidade = 5, Descricao = "Refrigerante Lata - ", Preco = 4.50m, Custo = 3.00m },
+        new Produto { Codigo = 7, Quantidade = 5, Descricao = "Àgua mineral(500ml) - ", Preco = 3.00m, Custo = 1.00m },
+        new Produto { Codigo = 8, Quantidade = 25, Descricao = "Pastel de carne - ", Preco = 6.00m, Custo = 4.00m },
+        new Produto { Codigo = 9, Quantidade = 35, Descricao = "Patel de queijo - ", Preco = 6.50m, Custo = 4.50m },
+        new Produto { Codigo = 10, Quantidade = 10, Descricao = "Hambúrguer simples", Preco = 8.00m, Custo = 5.00m },
+        new Produto { Codigo = 11, Quantidade = 12, Descricao = "Hambúrguer com queijo  ", Preco = 9.00m, Custo = 6.00m },
+        new Produto { Codigo = 12, Quantidade = 23, Descricao = "X - Tudo - ", Preco = 12.00m, Custo = 7.00m }};
 
         foreach (Produto p in produtos)
         {
@@ -175,17 +175,19 @@ public partial class Form1 : Form
         }
 
         string formaPagamento = comboBoxFormaPagamento.SelectedItem.ToString();
+        decimal valorRecebido = 0m; 
+        decimal troco = 0m;        
 
         switch (formaPagamento)
         {
             case "Dinheiro":
-                double valorRecebido;
-                if (!double.TryParse(dinheiroRecebidoTxt.Text, out valorRecebido) || valorRecebido < total)
+                if (!decimal.TryParse(dinheiroRecebidoTxt.Text, out valorRecebido) || valorRecebido < total) 
                 {
                     MessageBox.Show("Valor recebido inválido ou insuficiente.");
                     dinheiroRecebidoTxt.Focus();
                     return;
                 }
+                troco = valorRecebido - total; 
                 break;
 
             case "Cartão de Débito":
@@ -193,14 +195,8 @@ public partial class Form1 : Form
             case "Pix":
             case "Vale Alimentação":
                 dinheiroRecebidoTxt.Enabled = false;
+                valorRecebido = total; 
                 break;
-        }
-
-        double troco = 0;
-        if (formaPagamento == "Dinheiro")
-        {
-            double valorRecebidoFinal = double.Parse(dinheiroRecebidoTxt.Text);
-            troco = valorRecebidoFinal - total;
         }
 
         string itensCompradosStr = "Itens Comprados:\n";
@@ -217,20 +213,21 @@ public partial class Form1 : Form
             $"Forma de Pagamento: {formaPagamento}\n" +
             $"\n{itensCompradosStr}\n" +
             $"Total: R$ {total:F2}\n" +
-            (formaPagamento == "Dinheiro" ? $"Valor Recebido: R$ {double.Parse(dinheiroRecebidoTxt.Text):F2}\nTroco: R$ {troco:F2}" : ""),
+            (formaPagamento == "Dinheiro" ? $"Valor Recebido: R$ {valorRecebido:F2}\nTroco: R$ {troco:F2}" : ""), // Use decimal valorRecebido and troco
             "Recibo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         LimparCampos();
 
         Pedido pedido = new Pedido
         {
-            nome = nomeTxt.Text,
+            Nome = nomeTxt.Text,
             carrinho = produtos1,
-            date = new DateTime(),
-            total = total,
+            date = DateTime.Now,
+            Total = total,
             status = (statusPedido)Enum.Parse(typeof(statusPedido), "Criado")
         };
         Repositorio.listaPedidos.Add(pedido);
+        produtos1 = new List<ItemCarrinho>(); 
     }
 
     private void quantidadeTxt_TextChanged(object sender, EventArgs e)
@@ -240,7 +237,7 @@ public partial class Form1 : Form
         {
             if (!int.TryParse(quantidadeTxt.Text, out int quantidade) || quantidade < 0)
             {
-
+                
             }
         }
     }
@@ -255,7 +252,8 @@ public partial class Form1 : Form
         nomeTxt.Clear();
         nomeDoCliente = "";
         quantidadeTxt.Clear();
-        dinheiroRecebidoTxt.Enabled = true;
+        dinheiroRecebidoTxt.Enabled = true; 
+        comboBoxFormaPagamento.SelectedIndex = 0; 
     }
 
 
@@ -267,21 +265,27 @@ public partial class Form1 : Form
 
     private void AtualizarTroco()
     {
-        double valorRecebido;
+        decimal valorRecebido; 
 
-        if (!double.TryParse(dinheiroRecebidoTxt.Text, out valorRecebido) || valorRecebido < 0)
+        if (string.IsNullOrWhiteSpace(dinheiroRecebidoTxt.Text)) 
         {
             Troco.Text = "R$ 0,00";
             return;
         }
 
-        if (valorRecebido < total)
+        if (!decimal.TryParse(dinheiroRecebidoTxt.Text, out valorRecebido) || valorRecebido < 0)
+        {
+            Troco.Text = "Valor inválido"; 
+            return;
+        }
+
+        if (valorRecebido < total) 
         {
             Troco.Text = "Valor insuficiente.";
             return;
         }
 
-        double trocoCalculado = valorRecebido - total;
+        decimal trocoCalculado = valorRecebido - total; 
         Troco.Text = "R$" + trocoCalculado.ToString("F2");
     }
 
@@ -313,8 +317,9 @@ public partial class Form1 : Form
             dinheiroRecebidoTxt.Enabled = true;
             dinheiroRecebidoTxt.Visible = true;
             Troco.Visible = true;
-            label1.Visible = true;
-            label3.Visible = true;
+            label1.Visible = true; 
+            label3.Visible = true; 
+            AtualizarTroco(); 
         }
         else
         {
@@ -323,6 +328,8 @@ public partial class Form1 : Form
             Troco.Visible = false;
             label1.Visible = false;
             label3.Visible = false;
+            dinheiroRecebidoTxt.Clear(); 
+            Troco.Text = "R$ 0,00";    
         }
     }
 

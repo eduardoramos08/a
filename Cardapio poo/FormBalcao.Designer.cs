@@ -35,9 +35,9 @@
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(160, 75);
+            listBox1.Location = new Point(12, 31);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(312, 229);
+            listBox1.Size = new Size(761, 364);
             listBox1.TabIndex = 0;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
@@ -49,6 +49,7 @@
             Controls.Add(listBox1);
             Name = "FormBalcao";
             Text = "FormBalcao";
+            Load += FormBalcao_Load;
             ResumeLayout(false);
         }
 
