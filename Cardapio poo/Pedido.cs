@@ -11,7 +11,7 @@ namespace CARDAPIO_POO
     
     public class Pedido
     {
-
+        public string FormaPagamento { get; set; }
         public string Nome {  get; set; }
         public List<ItemCarrinho> carrinho { get; set; }
         public DateTime date { get; set; }

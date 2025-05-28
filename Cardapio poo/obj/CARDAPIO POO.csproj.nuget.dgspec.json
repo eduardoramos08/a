@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Desktop\\a\\CARDAPIO POO\\CARDAPIO POO.csproj": {}
+    "C:\\Users\\25163062\\Desktop\\a\\CARDAPIO POO\\CARDAPIO POO.csproj": {}
   },
   "projects": {
-    "F:\\Desktop\\a\\CARDAPIO POO\\CARDAPIO POO.csproj": {
+    "C:\\Users\\25163062\\Desktop\\a\\CARDAPIO POO\\CARDAPIO POO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Desktop\\a\\CARDAPIO POO\\CARDAPIO POO.csproj",
+        "projectUniqueName": "C:\\Users\\25163062\\Desktop\\a\\CARDAPIO POO\\CARDAPIO POO.csproj",
         "projectName": "CARDAPIO POO",
-        "projectPath": "F:\\Desktop\\a\\CARDAPIO POO\\CARDAPIO POO.csproj",
-        "packagesPath": "C:\\Users\\dudue\\.nuget\\packages\\",
-        "outputPath": "F:\\Desktop\\a\\CARDAPIO POO\\obj\\",
+        "projectPath": "C:\\Users\\25163062\\Desktop\\a\\CARDAPIO POO\\CARDAPIO POO.csproj",
+        "packagesPath": "C:\\Users\\25163062\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\25163062\\Desktop\\a\\CARDAPIO POO\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\dudue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\25163062\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

@@ -32,5 +32,60 @@ namespace CARDAPIO_POO
                 listBox1.Items.Add(pedido);
             }
         }
+
+        private void btnMarcarConcluido_Click(object sender, EventArgs e)
+        {
+
+            if (listBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um pedido para finalizar.");
+                return;
+            }
+
+            Pedido pedidoSelecionado = (Pedido)listBox1.SelectedItem;
+            pedidoSelecionado.status = Pedido.statusPedido.Finalizado;
+
+            AtualizarListaPedidosFinalizados();
+        }
+
+        private void AtualizarListaPedidosFinalizados()
+        {
+            listBox2.Items.Clear();
+
+            foreach (var pedido in Repositorio.listaPedidos)
+            {
+                if (pedido.status == Pedido.statusPedido.Finalizado)
+                {
+                    listBox2.Items.Add(pedido);
+                }
+            }
+        }
+
+        private void btnVerDetalhes_Click(object sender, EventArgs e) 
+        { 
+
+         if (listBox1.SelectedItem == null)
+        {
+        MessageBox.Show("Selecione um pedido para ver os detalhes.");
+        return;
+        }
+
+        Pedido pedidoSelecionado = (Pedido)listBox1.SelectedItem;
+
+        string detalhes = $"Cliente: {pedidoSelecionado.Nome}\n";
+        detalhes += $"Data: {pedidoSelecionado.date.ToString("dd/MM/yyyy HH:mm")}\n";
+        detalhes += $"Status: {pedidoSelecionado.status}\n";
+        detalhes += $"Forma de Pagamento: {pedidoSelecionado.FormaPagamento}\n"; 
+        detalhes += $"\nItens:\n";
+
+        foreach (var item in pedidoSelecionado.carrinho)
+        {
+            detalhes += $" - {item.ProdutoAdicionado.Descricao.TrimEnd(' ', '-')} | Qtde: {item.QuantidadeNoCarrinho} | Subtotal: R$ {(item.ProdutoAdicionado.Preco * item.QuantidadeNoCarrinho):F2}\n";
+        }
+
+            detalhes += $"\nTotal: R$ {pedidoSelecionado.Total:F2}";
+
+            MessageBox.Show(detalhes, "Detalhes do Pedido");
+        }
     }
 }

@@ -19,6 +19,7 @@ public partial class Form1 : Form
     {
         comboBoxFormaPagamento.Items.AddRange(new string[] { "Dinheiro", "Cartão de Débito", "Cartão de Crédito", "Pix", "Vale Alimentação" });
         comboBoxFormaPagamento.SelectedIndex = 3;
+
         var produtos = new List<Produto>
     {
         new Produto { Codigo = 1, Quantidade = 20, Descricao = "Pão de queijo ", Preco = 6, Custo = 4.00m },
@@ -213,10 +214,10 @@ public partial class Form1 : Form
             $"Forma de Pagamento: {formaPagamento}\n" +
             $"\n{itensCompradosStr}\n" +
             $"Total: R$ {total:F2}\n" +
-            (formaPagamento == "Dinheiro" ? $"Valor Recebido: R$ {valorRecebido:F2}\nTroco: R$ {troco:F2}" : ""), // Use decimal valorRecebido and troco
+            (formaPagamento == "Dinheiro" ? $"Valor Recebido: R$ {valorRecebido:F2}\nTroco: R$ {troco:F2}" : ""), 
             "Recibo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-        LimparCampos();
+        
 
         Pedido pedido = new Pedido
         {
@@ -224,10 +225,12 @@ public partial class Form1 : Form
             carrinho = produtos1,
             date = DateTime.Now,
             Total = total,
-            status = (statusPedido)Enum.Parse(typeof(statusPedido), "Criado")
+            status = (statusPedido)Enum.Parse(typeof(statusPedido), "Criado"),
+            FormaPagamento = comboBoxFormaPagamento.SelectedIndex.ToString()
         };
         Repositorio.listaPedidos.Add(pedido);
-        produtos1 = new List<ItemCarrinho>(); 
+        produtos1 = new List<ItemCarrinho>();
+        LimparCampos();
     }
 
     private void quantidadeTxt_TextChanged(object sender, EventArgs e)
@@ -252,8 +255,7 @@ public partial class Form1 : Form
         nomeTxt.Clear();
         nomeDoCliente = "";
         quantidadeTxt.Clear();
-        dinheiroRecebidoTxt.Enabled = true; 
-        comboBoxFormaPagamento.SelectedIndex = 0; 
+        comboBoxFormaPagamento.SelectedIndex = 3; 
     }
 
 
