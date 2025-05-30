@@ -226,8 +226,9 @@ public partial class Form1 : Form
             date = DateTime.Now,
             Total = total,
             status = (statusPedido)Enum.Parse(typeof(statusPedido), "Criado"),
-            FormaPagamento = comboBoxFormaPagamento.SelectedIndex.ToString()
+            FormaPagamento = comboBoxFormaPagamento.SelectedItem.ToString()
         };
+
         Repositorio.listaPedidos.Add(pedido);
         produtos1 = new List<ItemCarrinho>();
         LimparCampos();
