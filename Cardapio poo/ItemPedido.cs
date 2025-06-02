@@ -1,6 +1,6 @@
 ﻿namespace CARDAPIO_POO
 {
-    public class ItemCarrinho
+    public class ItemPedido
     {
 
         public Produto ProdutoAdicionado { get; set; }

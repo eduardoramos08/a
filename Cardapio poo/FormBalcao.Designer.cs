@@ -28,35 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listBox1 = new ListBox();
-            listBox2 = new ListBox();
             btnMarcarConcluido = new Button();
             btnVerDetalhes = new Button();
+            listViewPedidos = new ListView();
+            listViewFinalizados = new ListView();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // listBox1
-            // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(12, 89);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(494, 379);
-            listBox1.TabIndex = 0;
-            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
-            // 
-            // listBox2
-            // 
-            listBox2.FormattingEnabled = true;
-            listBox2.ItemHeight = 15;
-            listBox2.Location = new Point(641, 89);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(485, 379);
-            listBox2.TabIndex = 1;
             // 
             // btnMarcarConcluido
             // 
-            btnMarcarConcluido.Font = new Font("Segoe UI", 15F);
-            btnMarcarConcluido.Location = new Point(12, 502);
+            btnMarcarConcluido.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            btnMarcarConcluido.Location = new Point(108, 583);
             btnMarcarConcluido.Name = "btnMarcarConcluido";
             btnMarcarConcluido.Size = new Size(230, 72);
             btnMarcarConcluido.TabIndex = 2;
@@ -66,8 +49,8 @@
             // 
             // btnVerDetalhes
             // 
-            btnVerDetalhes.Font = new Font("Segoe UI", 15F);
-            btnVerDetalhes.Location = new Point(285, 502);
+            btnVerDetalhes.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            btnVerDetalhes.Location = new Point(350, 583);
             btnVerDetalhes.Name = "btnVerDetalhes";
             btnVerDetalhes.Size = new Size(168, 72);
             btnVerDetalhes.TabIndex = 3;
@@ -75,26 +58,64 @@
             btnVerDetalhes.UseVisualStyleBackColor = true;
             btnVerDetalhes.Click += btnVerDetalhes_Click;
             // 
+            // listViewPedidos
+            // 
+            listViewPedidos.FullRowSelect = true;
+            listViewPedidos.GridLines = true;
+            listViewPedidos.Location = new Point(108, 162);
+            listViewPedidos.Name = "listViewPedidos";
+            listViewPedidos.Size = new Size(410, 396);
+            listViewPedidos.TabIndex = 4;
+            listViewPedidos.UseCompatibleStateImageBehavior = false;
+            listViewPedidos.View = View.Details;
+            listViewPedidos.SelectedIndexChanged += listViewPedidos_SelectedIndexChanged;
+            // 
+            // listViewFinalizados
+            // 
+            listViewFinalizados.FullRowSelect = true;
+            listViewFinalizados.GridLines = true;
+            listViewFinalizados.Location = new Point(631, 162);
+            listViewFinalizados.Name = "listViewFinalizados";
+            listViewFinalizados.Size = new Size(426, 391);
+            listViewFinalizados.TabIndex = 5;
+            listViewFinalizados.UseCompatibleStateImageBehavior = false;
+            listViewFinalizados.View = View.Details;
+            listViewFinalizados.SelectedIndexChanged += listViewFinalizados_SelectedIndexChanged;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Image = Properties.Resources.Captura_de_tela_2025_05_20_223613_removebg_preview;
+            pictureBox1.Location = new Point(32, 28);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(174, 94);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 27;
+            pictureBox1.TabStop = false;
+            // 
             // FormBalcao
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(225, 255, 0);
             ClientSize = new Size(1208, 682);
+            Controls.Add(pictureBox1);
+            Controls.Add(listViewFinalizados);
+            Controls.Add(listViewPedidos);
             Controls.Add(btnVerDetalhes);
             Controls.Add(btnMarcarConcluido);
-            Controls.Add(listBox2);
-            Controls.Add(listBox1);
             Name = "FormBalcao";
             Text = "FormBalcao";
             Load += FormBalcao_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private ListBox listBox1;
-        private ListBox listBox2;
         private Button btnMarcarConcluido;
         private Button btnVerDetalhes;
+        private ListView listViewPedidos;
+        private ListView listViewFinalizados;
+        private PictureBox pictureBox1;
     }
 }

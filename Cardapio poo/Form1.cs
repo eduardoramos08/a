@@ -6,7 +6,7 @@ public partial class Form1 : Form
 
     decimal total = 0;
     string nomeDoCliente = "";
-    List<ItemCarrinho> produtos1 = new List<ItemCarrinho>();
+    List<ItemPedido> produtos1 = new List<ItemPedido>();
 
 
     public Form1()
@@ -77,11 +77,11 @@ public partial class Form1 : Form
         }
 
         ListViewItem lviCarrinhoExistente = null;
-        ItemCarrinho itemExistenteNoCarrinho = null;
+        ItemPedido itemExistenteNoCarrinho = null;
         foreach (ListViewItem lvi in listViewCarrinho.Items)
         {
 
-            if (lvi.Tag is ItemCarrinho ic)
+            if (lvi.Tag is ItemPedido ic)
             {
                 if (ic.ProdutoAdicionado.Codigo == produtoSelecionadoDoCardapio.Codigo)
                 {
@@ -101,7 +101,7 @@ public partial class Form1 : Form
         else
         {
 
-            ItemCarrinho novoItemCarrinho = new ItemCarrinho
+            ItemPedido novoItemCarrinho = new ItemPedido
             {
 
                 ProdutoAdicionado = produtoSelecionadoDoCardapio,
@@ -136,7 +136,7 @@ public partial class Form1 : Form
 
 
         ListViewItem itemSelecionadoCarrinhoLVI = listViewCarrinho.SelectedItems[0];
-        ItemCarrinho itemCarrinhoSelecionado = (ItemCarrinho)itemSelecionadoCarrinhoLVI.Tag;
+        ItemPedido itemCarrinhoSelecionado = (ItemPedido)itemSelecionadoCarrinhoLVI.Tag;
 
         total -= itemCarrinhoSelecionado.ProdutoAdicionado.Preco * itemCarrinhoSelecionado.QuantidadeNoCarrinho;
         totalTxt.Text = "Seu total é R$ " + total.ToString("F2");
@@ -203,7 +203,7 @@ public partial class Form1 : Form
         string itensCompradosStr = "Itens Comprados:\n";
         foreach (ListViewItem lvi in listViewCarrinho.Items)
         {
-            ItemCarrinho item = (ItemCarrinho)lvi.Tag;
+            ItemPedido item = (ItemPedido)lvi.Tag;
             itensCompradosStr += $"{item.ProdutoAdicionado.Descricao.TrimEnd(' ', '-')} - Qtd: {item.QuantidadeNoCarrinho} - Subtotal: R$ {(item.ProdutoAdicionado.Preco * item.QuantidadeNoCarrinho):F2}\n";
         }
 
@@ -230,7 +230,7 @@ public partial class Form1 : Form
         };
 
         Repositorio.listaPedidos.Add(pedido);
-        produtos1 = new List<ItemCarrinho>();
+        produtos1 = new List<ItemPedido>();
         LimparCampos();
     }
 

@@ -19,73 +19,102 @@ namespace CARDAPIO_POO
 
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void AtualizarListViewPedidos()            
         {
+            foreach (var pedido in Repositorio.listaPedidos)
+            {
+                if (pedido.status != Pedido.statusPedido.Finalizado)
+                {
+                    ListViewItem item = new ListViewItem(pedido.Nome);
+                    item.SubItems.Add(pedido.status.ToString());
+                    item.SubItems.Add(pedido.date.ToString("dd/MM/yyyy HH:mm"));
+                    item.Tag = pedido;
+                    listViewPedidos.Items.Add(item);    
+                }
+            }
+        }
 
-
+        private void atualizarListViewFinalizados()
+        {
+            foreach(var pedido in Repositorio.listaPedidos)
+            {
+                if(pedido.status == Pedido.statusPedido.Finalizado)
+                {
+                    ListViewItem item = new ListViewItem(pedido.Nome);
+                    item.SubItems.Add(pedido.status.ToString());
+                    item.SubItems.Add(pedido.date.ToString("dd/MM/yyyy HH:mm"));
+                    item.Tag = pedido;
+                    listViewFinalizados.Items.Add(item);
+                }
+            }
         }
 
         private void FormBalcao_Load(object sender, EventArgs e)
         {
-            foreach (var pedido in Repositorio.listaPedidos)
-            {
-                listBox1.Items.Add(pedido);
-            }
+            listViewPedidos.View  = View.Details;
+            listViewPedidos.Columns.Add("Cliente", 150);
+            listViewPedidos.Columns.Add("Status", 100);
+            listViewPedidos.Columns.Add("Data", 150);
+
+            listViewFinalizados.View = View.Details;
+            listViewFinalizados.Columns.Add("Cliente", 150);
+            listViewFinalizados.Columns.Add("Status", 100);
+            listViewFinalizados.Columns.Add("Data", 150);
+
+            AtualizarListViewPedidos();
         }
 
         private void btnMarcarConcluido_Click(object sender, EventArgs e)
         {
 
-            if (listBox1.SelectedItem == null)
+            if (listViewPedidos.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Selecione um pedido para finalizar.");
                 return;
             }
 
-            Pedido pedidoSelecionado = (Pedido)listBox1.SelectedItem;
+            ListViewItem ItemSelecionado = listViewPedidos.SelectedItems[0];
+            Pedido pedidoSelecionado = (Pedido)ItemSelecionado.Tag;
             pedidoSelecionado.status = Pedido.statusPedido.Finalizado;
 
-            AtualizarListaPedidosFinalizados();
+            atualizarListViewFinalizados();
         }
 
-        private void AtualizarListaPedidosFinalizados()
-        {
-            listBox2.Items.Clear();
+        
 
-            foreach (var pedido in Repositorio.listaPedidos)
+        private void btnVerDetalhes_Click(object sender, EventArgs e)
+        {
+            if (listViewPedidos.SelectedItems.Count == 0)
             {
-                if (pedido.status == Pedido.statusPedido.Finalizado)
-                {
-                    listBox2.Items.Add(pedido);
-                }
+                MessageBox.Show("Selecione um pedido para ver os detalhes.");
+                return;
             }
-        }
 
-        private void btnVerDetalhes_Click(object sender, EventArgs e) 
-        { 
+            Pedido pedidoSelecionado = (Pedido)listViewPedidos.SelectedItems[0].Tag;
 
-         if (listBox1.SelectedItem == null)
-        {
-        MessageBox.Show("Selecione um pedido para ver os detalhes.");
-        return;
-        }
+            string detalhes = $"Cliente: {pedidoSelecionado.Nome}\n";
+            detalhes += $"Data: {pedidoSelecionado.date:dd/MM/yyyy HH:mm}\n";
+            detalhes += $"Status: {pedidoSelecionado.status}\n";
+            detalhes += $"Forma de Pagamento: {pedidoSelecionado.FormaPagamento}\n";
+            detalhes += $"\nItens:\n";
 
-        Pedido pedidoSelecionado = (Pedido)listBox1.SelectedItem;
-
-        string detalhes = $"Cliente: {pedidoSelecionado.Nome}\n";
-        detalhes += $"Data: {pedidoSelecionado.date.ToString("dd/MM/yyyy HH:mm")}\n";
-        detalhes += $"Status: {pedidoSelecionado.status}\n";
-        detalhes += $"Forma de Pagamento: {pedidoSelecionado.FormaPagamento}\n"; 
-        detalhes += $"\nItens:\n";
-
-        foreach (var item in pedidoSelecionado.carrinho)
-        {
-            detalhes += $" - {item.ProdutoAdicionado.Descricao.TrimEnd(' ', '-')} | Qtde: {item.QuantidadeNoCarrinho} | Subtotal: R$ {(item.ProdutoAdicionado.Preco * item.QuantidadeNoCarrinho):F2}\n";
-        }
+            foreach (var item in pedidoSelecionado.carrinho)
+            {
+                detalhes += $" - {item.ProdutoAdicionado.Descricao.TrimEnd(' ', '-')} | Qtde: {item.QuantidadeNoCarrinho} | Subtotal: R$ {(item.ProdutoAdicionado.Preco * item.QuantidadeNoCarrinho):F2}\n";
+            }
 
             detalhes += $"\nTotal: R$ {pedidoSelecionado.Total:F2}";
-
             MessageBox.Show(detalhes, "Detalhes do Pedido");
+        }
+
+        private void listViewPedidos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewFinalizados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -13,7 +13,7 @@ namespace CARDAPIO_POO
     {
         public string FormaPagamento { get; set; }
         public string Nome {  get; set; }
-        public List<ItemCarrinho> carrinho { get; set; }
+        public List<ItemPedido> carrinho { get; set; }
         public DateTime date { get; set; }
         public decimal Total { get; set; } 
         public statusPedido status { get; set; }
