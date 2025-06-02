@@ -64,7 +64,7 @@
             listViewPedidos.GridLines = true;
             listViewPedidos.Location = new Point(108, 162);
             listViewPedidos.Name = "listViewPedidos";
-            listViewPedidos.Size = new Size(410, 396);
+            listViewPedidos.Size = new Size(410, 391);
             listViewPedidos.TabIndex = 4;
             listViewPedidos.UseCompatibleStateImageBehavior = false;
             listViewPedidos.View = View.Details;
@@ -76,7 +76,7 @@
             listViewFinalizados.GridLines = true;
             listViewFinalizados.Location = new Point(631, 162);
             listViewFinalizados.Name = "listViewFinalizados";
-            listViewFinalizados.Size = new Size(426, 391);
+            listViewFinalizados.Size = new Size(411, 391);
             listViewFinalizados.TabIndex = 5;
             listViewFinalizados.UseCompatibleStateImageBehavior = false;
             listViewFinalizados.View = View.Details;

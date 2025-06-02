@@ -67,7 +67,7 @@ namespace CARDAPIO_POO
         private void btnMarcarConcluido_Click(object sender, EventArgs e)
         {
 
-            if (listViewPedidos.SelectedItems.Count == 0)
+            if (listViewPedidos.SelectedItems.Count == 0 )
             {
                 MessageBox.Show("Selecione um pedido para finalizar.");
                 return;

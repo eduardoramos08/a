@@ -19,6 +19,7 @@ namespace CARDAPIO_POO
         public statusPedido status { get; set; }
         public enum statusPedido
         {
+            Viagem,
             Criado,
             Preparando,
             Finalizado,

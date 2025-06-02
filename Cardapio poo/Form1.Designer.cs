@@ -57,13 +57,14 @@
             label5 = new Label();
             pictureBox1 = new PictureBox();
             button1 = new Button();
+            btnViagem = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // totalTxt
             // 
             totalTxt.AutoSize = true;
-            totalTxt.Font = new Font("Segoe UI", 12F);
+            totalTxt.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             totalTxt.Location = new Point(1119, 500);
             totalTxt.Name = "totalTxt";
             totalTxt.Size = new Size(0, 21);
@@ -72,7 +73,7 @@
             // cardapioTxt
             // 
             cardapioTxt.AutoSize = true;
-            cardapioTxt.Font = new Font("Bauhaus 93", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cardapioTxt.Font = new Font("Bauhaus 93", 15F, FontStyle.Regular, GraphicsUnit.Point);
             cardapioTxt.Location = new Point(212, 124);
             cardapioTxt.Name = "cardapioTxt";
             cardapioTxt.Size = new Size(96, 23);
@@ -82,7 +83,7 @@
             // 
             // adicionarBtn
             // 
-            adicionarBtn.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            adicionarBtn.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point);
             adicionarBtn.ForeColor = SystemColors.ControlText;
             adicionarBtn.Location = new Point(580, 155);
             adicionarBtn.Name = "adicionarBtn";
@@ -94,7 +95,7 @@
             // 
             // removerBtn
             // 
-            removerBtn.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            removerBtn.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point);
             removerBtn.Location = new Point(715, 155);
             removerBtn.Name = "removerBtn";
             removerBtn.Size = new Size(129, 56);
@@ -105,7 +106,7 @@
             // 
             // finalizarBtn
             // 
-            finalizarBtn.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            finalizarBtn.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point);
             finalizarBtn.Location = new Point(850, 155);
             finalizarBtn.Name = "finalizarBtn";
             finalizarBtn.Size = new Size(129, 56);
@@ -117,7 +118,7 @@
             // pedidoTxt
             // 
             pedidoTxt.AutoSize = true;
-            pedidoTxt.Font = new Font("Bauhaus 93", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            pedidoTxt.Font = new Font("Bauhaus 93", 15F, FontStyle.Regular, GraphicsUnit.Point);
             pedidoTxt.Location = new Point(1214, 124);
             pedidoTxt.Name = "pedidoTxt";
             pedidoTxt.Size = new Size(73, 23);
@@ -135,7 +136,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(629, 268);
             label2.Name = "label2";
             label2.Size = new Size(95, 24);
@@ -165,7 +166,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(607, 394);
             label1.Name = "label1";
             label1.Size = new Size(117, 24);
@@ -176,7 +177,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(668, 428);
             label3.Name = "label3";
             label3.Size = new Size(56, 24);
@@ -187,7 +188,7 @@
             // Troco
             // 
             Troco.AutoSize = true;
-            Troco.Font = new Font("Segoe UI", 13F);
+            Troco.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
             Troco.Location = new Point(729, 429);
             Troco.Name = "Troco";
             Troco.Size = new Size(124, 25);
@@ -198,7 +199,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point);
             label4.Location = new Point(664, 308);
             label4.Name = "label4";
             label4.Size = new Size(60, 24);
@@ -217,7 +218,7 @@
             // 
             listViewCardapio.BackColor = Color.FromArgb(243, 241, 238);
             listViewCardapio.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
-            listViewCardapio.Font = new Font("Segoe UI", 15F);
+            listViewCardapio.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
             listViewCardapio.FullRowSelect = true;
             listViewCardapio.GridLines = true;
             listViewCardapio.Location = new Point(12, 155);
@@ -254,7 +255,7 @@
             // 
             listViewCarrinho.BackColor = Color.FromArgb(243, 241, 238);
             listViewCarrinho.Columns.AddRange(new ColumnHeader[] { columnHeader5, columnHeader6, columnHeader7, columnHeader8 });
-            listViewCarrinho.Font = new Font("Segoe UI", 15F);
+            listViewCarrinho.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
             listViewCarrinho.FullRowSelect = true;
             listViewCarrinho.GridLines = true;
             listViewCarrinho.Location = new Point(1036, 155);
@@ -301,7 +302,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point);
             label5.Location = new Point(547, 348);
             label5.Name = "label5";
             label5.Size = new Size(187, 24);
@@ -321,7 +322,7 @@
             // 
             // button1
             // 
-            button1.Font = new Font("Segoe UI", 15F);
+            button1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
             button1.Location = new Point(701, 594);
             button1.Name = "button1";
             button1.Size = new Size(171, 66);
@@ -330,6 +331,18 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // btnViagem
+            // 
+            btnViagem.AutoSize = true;
+            btnViagem.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            btnViagem.Location = new Point(715, 489);
+            btnViagem.Name = "btnViagem";
+            btnViagem.Size = new Size(139, 32);
+            btnViagem.TabIndex = 29;
+            btnViagem.Text = "Para Viagem";
+            btnViagem.UseVisualStyleBackColor = true;
+            btnViagem.CheckedChanged += btnViagem_CheckedChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -337,6 +350,7 @@
             BackColor = Color.FromArgb(225, 255, 0);
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(1574, 736);
+            Controls.Add(btnViagem);
             Controls.Add(button1);
             Controls.Add(pictureBox1);
             Controls.Add(label5);
@@ -399,5 +413,6 @@
         private Label label5;
         private PictureBox pictureBox1;
         private Button button1;
+        private CheckBox btnViagem;
     }
 }

@@ -176,19 +176,19 @@ public partial class Form1 : Form
         }
 
         string formaPagamento = comboBoxFormaPagamento.SelectedItem.ToString();
-        decimal valorRecebido = 0m; 
-        decimal troco = 0m;        
+        decimal valorRecebido = 0m;
+        decimal troco = 0m;
 
         switch (formaPagamento)
         {
             case "Dinheiro":
-                if (!decimal.TryParse(dinheiroRecebidoTxt.Text, out valorRecebido) || valorRecebido < total) 
+                if (!decimal.TryParse(dinheiroRecebidoTxt.Text, out valorRecebido) || valorRecebido < total)
                 {
                     MessageBox.Show("Valor recebido inválido ou insuficiente.");
                     dinheiroRecebidoTxt.Focus();
                     return;
                 }
-                troco = valorRecebido - total; 
+                troco = valorRecebido - total;
                 break;
 
             case "Cartão de Débito":
@@ -196,7 +196,7 @@ public partial class Form1 : Form
             case "Pix":
             case "Vale Alimentação":
                 dinheiroRecebidoTxt.Enabled = false;
-                valorRecebido = total; 
+                valorRecebido = total;
                 break;
         }
 
@@ -214,10 +214,10 @@ public partial class Form1 : Form
             $"Forma de Pagamento: {formaPagamento}\n" +
             $"\n{itensCompradosStr}\n" +
             $"Total: R$ {total:F2}\n" +
-            (formaPagamento == "Dinheiro" ? $"Valor Recebido: R$ {valorRecebido:F2}\nTroco: R$ {troco:F2}" : ""), 
+            (formaPagamento == "Dinheiro" ? $"Valor Recebido: R$ {valorRecebido:F2}\nTroco: R$ {troco:F2}" : ""),
             "Recibo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-        
+
 
         Pedido pedido = new Pedido
         {
@@ -241,7 +241,7 @@ public partial class Form1 : Form
         {
             if (!int.TryParse(quantidadeTxt.Text, out int quantidade) || quantidade < 0)
             {
-                
+
             }
         }
     }
@@ -256,7 +256,7 @@ public partial class Form1 : Form
         nomeTxt.Clear();
         nomeDoCliente = "";
         quantidadeTxt.Clear();
-        comboBoxFormaPagamento.SelectedIndex = 3; 
+        comboBoxFormaPagamento.SelectedIndex = 3;
     }
 
 
@@ -268,9 +268,9 @@ public partial class Form1 : Form
 
     private void AtualizarTroco()
     {
-        decimal valorRecebido; 
+        decimal valorRecebido;
 
-        if (string.IsNullOrWhiteSpace(dinheiroRecebidoTxt.Text)) 
+        if (string.IsNullOrWhiteSpace(dinheiroRecebidoTxt.Text))
         {
             Troco.Text = "R$ 0,00";
             return;
@@ -278,17 +278,17 @@ public partial class Form1 : Form
 
         if (!decimal.TryParse(dinheiroRecebidoTxt.Text, out valorRecebido) || valorRecebido < 0)
         {
-            Troco.Text = "Valor inválido"; 
+            Troco.Text = "Valor inválido";
             return;
         }
 
-        if (valorRecebido < total) 
+        if (valorRecebido < total)
         {
             Troco.Text = "Valor insuficiente.";
             return;
         }
 
-        decimal trocoCalculado = valorRecebido - total; 
+        decimal trocoCalculado = valorRecebido - total;
         Troco.Text = "R$" + trocoCalculado.ToString("F2");
     }
 
@@ -320,9 +320,9 @@ public partial class Form1 : Form
             dinheiroRecebidoTxt.Enabled = true;
             dinheiroRecebidoTxt.Visible = true;
             Troco.Visible = true;
-            label1.Visible = true; 
-            label3.Visible = true; 
-            AtualizarTroco(); 
+            label1.Visible = true;
+            label3.Visible = true;
+            AtualizarTroco();
         }
         else
         {
@@ -331,8 +331,8 @@ public partial class Form1 : Form
             Troco.Visible = false;
             label1.Visible = false;
             label3.Visible = false;
-            dinheiroRecebidoTxt.Clear(); 
-            Troco.Text = "R$ 0,00";    
+            dinheiroRecebidoTxt.Clear();
+            Troco.Text = "R$ 0,00";
         }
     }
 
@@ -355,5 +355,10 @@ public partial class Form1 : Form
     {
         FormBalcao formBalcao = new FormBalcao();
         formBalcao.Show();
+    }
+
+    private void btnViagem_CheckedChanged(object sender, EventArgs e)
+    {
+        
     }
 }
