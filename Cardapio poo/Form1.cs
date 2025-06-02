@@ -225,7 +225,9 @@ public partial class Form1 : Form
             carrinho = produtos1,
             date = DateTime.Now,
             Total = total,
-            status = (statusPedido)Enum.Parse(typeof(statusPedido), "Criado"),
+            status = btnViagem.Checked ?
+         (statusPedido)Enum.Parse(typeof(statusPedido), "Viagem") :
+         (statusPedido)Enum.Parse(typeof(statusPedido), "Preparando"),
             FormaPagamento = comboBoxFormaPagamento.SelectedItem.ToString()
         };
 

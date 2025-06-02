@@ -51,46 +51,68 @@ namespace CARDAPIO_POO
 
         private void FormBalcao_Load(object sender, EventArgs e)
         {
-            listViewPedidos.View  = View.Details;
-            listViewPedidos.Columns.Add("Cliente", 150);
-            listViewPedidos.Columns.Add("Status", 100);
-            listViewPedidos.Columns.Add("Data", 150);
+            {
+                listViewPedidos.View = View.Details;
+                listViewPedidos.Columns.Add("Cliente", 150);
+                listViewPedidos.Columns.Add("Status", 100);
+                listViewPedidos.Columns.Add("Data", 150);
 
-            listViewFinalizados.View = View.Details;
-            listViewFinalizados.Columns.Add("Cliente", 150);
-            listViewFinalizados.Columns.Add("Status", 100);
-            listViewFinalizados.Columns.Add("Data", 150);
+                listViewFinalizados.View = View.Details;
+                listViewFinalizados.Columns.Add("Cliente", 150);
+                listViewFinalizados.Columns.Add("Status", 100);
+                listViewFinalizados.Columns.Add("Data", 150);
 
-            AtualizarListViewPedidos();
+                
+                AtualizarListViewPedidos();
+            }
         }
 
         private void btnMarcarConcluido_Click(object sender, EventArgs e)
         {
 
-            if (listViewPedidos.SelectedItems.Count == 0 )
+            if (listViewPedidos.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Selecione um pedido para finalizar.");
                 return;
             }
 
-            ListViewItem ItemSelecionado = listViewPedidos.SelectedItems[0];
-            Pedido pedidoSelecionado = (Pedido)ItemSelecionado.Tag;
+            ListViewItem itemSelecionado = listViewPedidos.SelectedItems[0];
+            Pedido pedidoSelecionado = (Pedido)itemSelecionado.Tag;
+
+ 
             pedidoSelecionado.status = Pedido.statusPedido.Finalizado;
 
-            atualizarListViewFinalizados();
+            listViewPedidos.Items.Remove(itemSelecionado);
+
+            ListViewItem itemFinalizado = new ListViewItem(pedidoSelecionado.Nome);
+            itemFinalizado.SubItems.Add(pedidoSelecionado.status.ToString());
+            itemFinalizado.SubItems.Add(pedidoSelecionado.date.ToString("dd/MM/yyyy HH:mm"));
+            itemFinalizado.Tag = pedidoSelecionado;
+
+            listViewFinalizados.Items.Add(itemFinalizado);
         }
 
-        
+
 
         private void btnVerDetalhes_Click(object sender, EventArgs e)
         {
-            if (listViewPedidos.SelectedItems.Count == 0)
+            Pedido pedidoSelecionado = null;
+
+
+            if (listViewPedidos.SelectedItems.Count > 0)
+            {
+                pedidoSelecionado = (Pedido)listViewPedidos.SelectedItems[0].Tag;
+            }
+
+            else if (listViewFinalizados.SelectedItems.Count > 0)
+            {
+                pedidoSelecionado = (Pedido)listViewFinalizados.SelectedItems[0].Tag;
+            }
+            else
             {
                 MessageBox.Show("Selecione um pedido para ver os detalhes.");
                 return;
             }
-
-            Pedido pedidoSelecionado = (Pedido)listViewPedidos.SelectedItems[0].Tag;
 
             string detalhes = $"Cliente: {pedidoSelecionado.Nome}\n";
             detalhes += $"Data: {pedidoSelecionado.date:dd/MM/yyyy HH:mm}\n";
@@ -104,8 +126,11 @@ namespace CARDAPIO_POO
             }
 
             detalhes += $"\nTotal: R$ {pedidoSelecionado.Total:F2}";
+
             MessageBox.Show(detalhes, "Detalhes do Pedido");
         }
+
+
 
         private void listViewPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
