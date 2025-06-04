@@ -20,7 +20,6 @@ namespace CARDAPIO_POO
         public enum statusPedido
         {
             Viagem,
-            Criado,
             Preparando,
             Finalizado,
             Cancelado

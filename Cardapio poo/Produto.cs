@@ -7,7 +7,8 @@
         private int quantidade;
         private decimal preco;
         private decimal custo;
-
+        private bool isChapa; 
+            
 
         public Produto()
         {
@@ -16,17 +17,18 @@
             quantidade = 0;
             preco = 0;
             custo = 0;
+            isChapa = false;
 
         }
 
-        public Produto(int codigo, string descricao, int quantidade, decimal preco, decimal custo, double total)
+        public Produto(int codigo, string descricao, int quantidade, decimal preco, decimal custo, double total, bool isChapa)
         {
             this.codigo = codigo;
             this.descricao = descricao;
             this.quantidade = quantidade;
             this.preco = preco;
             this.custo = custo;
-
+            this.isChapa = isChapa;
         }
 
         public int Codigo
@@ -56,7 +58,11 @@
             get { return custo; }
             set { custo = value; }
         }
-
+        public bool IsChapa
+        {
+            get { return isChapa; }
+            set { isChapa = value; }
+        }
 
         public override string ToString()
         {

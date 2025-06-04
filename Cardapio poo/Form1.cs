@@ -225,7 +225,9 @@ public partial class Form1 : Form
             carrinho = produtos1,
             date = DateTime.Now,
             Total = total,
-            status = (statusPedido)Enum.Parse(typeof(statusPedido), "Criado"),
+            status = btnViagem.Checked ?
+         (statusPedido)Enum.Parse(typeof(statusPedido), "Viagem") :
+         (statusPedido)Enum.Parse(typeof(statusPedido), "Preparando"),
             FormaPagamento = comboBoxFormaPagamento.SelectedItem.ToString()
         };
 
@@ -359,6 +361,11 @@ public partial class Form1 : Form
 
     private void btnViagem_CheckedChanged(object sender, EventArgs e)
     {
-        
+
+    }
+
+    private void pictureBox3_Click(object sender, EventArgs e)
+    {
+
     }
 }
